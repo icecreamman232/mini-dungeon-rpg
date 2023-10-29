@@ -16,6 +16,7 @@ namespace JustGame.Scripts.Player
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private Vector2 m_moveDirection;
         [SerializeField] private FacingDirecttion m_facingDirecttion;
+        [SerializeField] private LayerMask m_obstacleMask;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
         [SerializeField] private Animator m_animator;
         private InputManager m_input;
@@ -74,6 +75,11 @@ namespace JustGame.Scripts.Player
             transform.Translate(m_moveDirection * (m_moveSpeed * Time.deltaTime));
         }
 
+        private void CheckObstacle()
+        {
+            
+        }
+        
         private void UpdateAnimator()
         {
             m_spriteRenderer.flipX = m_moveDirection.x > 0;
