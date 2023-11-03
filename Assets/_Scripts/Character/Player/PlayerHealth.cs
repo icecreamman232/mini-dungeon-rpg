@@ -17,11 +17,11 @@ namespace JustGame.Scripts.Player
             m_curLife = m_maxLife;
         }
 
-        public override void TakeDamage(int damage, GameObject instigator)
+        public override void TakeDamage(float damage, GameObject instigator)
         {
             if (m_isInvulnerable) return;
-
-            m_curLife -= damage;
+            
+            m_curLife -= 1;
             m_healthEvent.Raise(m_curLife);
             
             if (m_curLife <= 0)

@@ -4,7 +4,7 @@ namespace JustGame.Scripts.Player
 {
     public class Health : MonoBehaviour
     {
-        public virtual void TakeDamage(int damage, GameObject instigator)
+        public virtual void TakeDamage(float damage, GameObject instigator)
         {
             
         }

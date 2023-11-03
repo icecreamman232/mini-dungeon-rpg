@@ -17,7 +17,7 @@ namespace JustGame.Scripts.UI
 
         private void OnPlayerUpdateHealth(int currentLife)
         {
-            m_lifeIconList[currentLife + 1].SetActive(false);
+            m_lifeIconList[currentLife].SetActive(false);
         }
 
         private void OnDestroy()

@@ -10,11 +10,11 @@ namespace JustGame.Scripts.Combat
 {
     public class DamageHandler : MonoBehaviour
     {
-        [SerializeField] private int m_minDamage;
-        [SerializeField] private int m_maxDamage;
+        [SerializeField] private float m_minDamage;
+        [SerializeField] private float m_maxDamage;
         [SerializeField] private LayerMask m_targetMask;
         
-        private int GetDamage()
+        private float GetDamage()
         {
             return Random.Range(m_minDamage, m_maxDamage + 1);
         }
