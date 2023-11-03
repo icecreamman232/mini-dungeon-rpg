@@ -15,15 +15,10 @@ namespace JustGame.Scripts.Player
     {
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private Vector2 m_moveDirection;
-        [SerializeField] private FacingDirecttion m_facingDirecttion;
-        [SerializeField] private LayerMask m_obstacleMask;
-        [SerializeField] private SpriteRenderer m_spriteRenderer;
         [SerializeField] private Animator m_animator;
         private InputManager m_input;
 
-        private int m_boolIsLeftAnim = Animator.StringToHash("IsLeft");
-        private int m_intDirectionX = Animator.StringToHash("Direction-X");
-        private int m_intDirectionY = Animator.StringToHash("Direction-Y");
+        private int m_runningAnim = Animator.StringToHash("bool_IsRun");
 
         private void Start()
         {
@@ -45,48 +40,43 @@ namespace JustGame.Scripts.Player
                 m_moveDirection = Vector2.zero;
                 return;
             }
-
-            m_moveDirection = Vector2.zero;
             
             if (m_input.GetKeyDown(BindingAction.MOVE_LEFT))
             {
                 m_moveDirection.x = -1;
-                m_facingDirecttion = FacingDirecttion.LEFT;
             }
             else if (m_input.GetKeyDown(BindingAction.MOVE_RIGHT))
             {
                 m_moveDirection.x = 1;
-                m_facingDirecttion = FacingDirecttion.RIGHT;
             }
-            else if (m_input.GetKeyDown(BindingAction.MOVE_UP))
+            else
+            {
+                m_moveDirection.x = 0;
+            }
+            
+            if (m_input.GetKeyDown(BindingAction.MOVE_UP))
             {
                 m_moveDirection.y = 1;
-                m_facingDirecttion = FacingDirecttion.UP;
             }
             else if (m_input.GetKeyDown(BindingAction.MOVE_DOWN))
             {
                 m_moveDirection.y = -1;
-                m_facingDirecttion = FacingDirecttion.DOWN;
+            }
+            else
+            {
+                m_moveDirection.y = 0;
             }
         }
 
         private void UpdateMovement()
         {
-            transform.Translate(m_moveDirection * (m_moveSpeed * Time.deltaTime));
+            transform.Translate(m_moveDirection * (m_moveSpeed/10 * Time.deltaTime));
         }
 
-        private void CheckObstacle()
-        {
-            
-        }
         
         private void UpdateAnimator()
         {
-            m_spriteRenderer.flipX = m_moveDirection.x > 0;
-            m_animator.SetBool(m_boolIsLeftAnim, m_moveDirection.x <= -1);
-            m_animator.SetInteger(m_intDirectionX, (int)m_moveDirection.x);
-            m_animator.SetInteger(m_intDirectionY, (int)m_moveDirection.y);
-            m_spriteRenderer.flipX = m_facingDirecttion == FacingDirecttion.RIGHT;
+            m_animator.SetBool(m_runningAnim, m_moveDirection != Vector2.zero);
         }
     }
 }
