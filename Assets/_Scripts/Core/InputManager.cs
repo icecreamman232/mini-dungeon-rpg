@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JustGame.Scripts.Runtime;
 using UnityEngine;
 
 namespace JustGame.Scripts.Managers
@@ -29,6 +30,7 @@ namespace JustGame.Scripts.Managers
 
     public class InputManager : PersistentSingleton<InputManager>
     {
+        [SerializeField] private GlobalRuntimeVariables m_runtimeVariables;
         public ButtonAssign[] buttonsAssigns;
    
         private Dictionary<BindingAction, ButtonStates> m_buttonDictionary;
@@ -125,12 +127,12 @@ namespace JustGame.Scripts.Managers
             return false;
         }
 
-        // public Vector3 GetWorldMousePos()
-        // {
-        //     //var pos = m_runtimeWorldSet.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-        //     //pos.z = 0;
-        //     //return pos;
-        // }
+        public Vector3 GetWorldMousePos()
+        {
+            var pos = m_runtimeVariables.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            return pos;
+        }
 
         public void Reset()
         {
