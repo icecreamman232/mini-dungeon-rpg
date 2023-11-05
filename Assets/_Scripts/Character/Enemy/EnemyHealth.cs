@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using JustGame.Scripts.Managers;
 using JustGame.Scripts.Player;
@@ -14,6 +15,8 @@ namespace JustGame.Scripts.Enemies
         [SerializeField] private EnemyHealthBarUI m_healthBar;
         private bool m_isInvulnerable;
 
+        public Action OnDeath;
+        
         private void Start()
         {
             m_curHealth = m_maxHealth;
@@ -39,6 +42,7 @@ namespace JustGame.Scripts.Enemies
         private void Kill()
         {
             //TODO:Kill process here
+            OnDeath?.Invoke();
             this.gameObject.SetActive(false);
         }
         
