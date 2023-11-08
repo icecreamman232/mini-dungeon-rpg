@@ -19,7 +19,7 @@ namespace JustGame.Scripts.Events
 
         public void Raise(T value)
         {
-            m_listeners.Invoke(value);
+            m_listeners?.Invoke(value);
         }
     }
 }

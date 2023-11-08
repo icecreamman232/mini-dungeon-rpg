@@ -24,13 +24,14 @@ namespace JustGame.Scripts.Levels
         [SerializeField] private Zone m_prevZone;
         [SerializeField] private Zone m_currentZone;
         [SerializeField] private int m_currentRoom;
+        [SerializeField] private BoolEvent m_finishRoomEvent;
         [SerializeField] private BoolEvent m_finishZoneEvent;
         
         private void Start()
         {
             m_prevZone = m_currentZone;
-            m_currentRoom = Global.MAX_ROOM;
-            m_finishZoneEvent.AddListener(OnFinishZone);
+            m_currentRoom = 0;
+            m_finishRoomEvent.AddListener(OnFinishRoom);
         }
         
         private void InitializeNextZone()
@@ -44,14 +45,21 @@ namespace JustGame.Scripts.Levels
             m_currentRoom = 0;
         }
 
-        private void OnFinishZone(bool isFinished)
+        private void OnFinishRoom(bool isFinished)
         {
-            InitializeNextZone();
+            if (m_currentRoom == 9)
+            {
+                InitializeNextZone();
+            }
+            else
+            {
+                m_currentRoom++;
+            }
         }
 
         private void OnDestroy()
         {
-            m_finishZoneEvent.RemoveListener(OnFinishZone);
+            m_finishRoomEvent.RemoveListener(OnFinishRoom);
         }
     }
 }
