@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b51f7529325bb24d99b47f52439f2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_finishZoneEvent: {fileID: 11400000, guid: 5e9f7d9d01dc46f4bb893383c25b61a9, type: 2}
   m_enemyHealths:
   - {fileID: 4855276146850379862}
   - {fileID: 8455088523284502068}

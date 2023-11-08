@@ -1,10 +1,12 @@
 using JustGame.Scripts.Enemies;
+using JustGame.Scripts.Events;
 using UnityEngine;
 
 namespace JustGame.Scripts.Levels
 {
     public class LevelLayout : MonoBehaviour
     {
+        [SerializeField] private BoolEvent m_finishZoneEvent;
         [SerializeField] private EnemyHealth[] m_enemyHealths;
         private int m_enemyNumber;
         
@@ -23,6 +25,7 @@ namespace JustGame.Scripts.Levels
             if (m_enemyNumber <= 0)
             {
                 //TODO:Announce level layout finished
+                m_finishZoneEvent.Raise(true);
             }
         }
 
