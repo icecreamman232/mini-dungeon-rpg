@@ -17,8 +17,11 @@ namespace JustGame.Scripts.Player
         [SerializeField] private Vector2 m_moveDirection;
         [SerializeField] private Animator m_animator;
         private InputManager m_input;
-
+        private Vector2 m_lastDirection;
         private int m_runningAnim = Animator.StringToHash("bool_IsRun");
+
+
+        public Vector2 MovingDirection => m_moveDirection == Vector2.zero ? Vector2.right : m_moveDirection;
 
         private void Start()
         {

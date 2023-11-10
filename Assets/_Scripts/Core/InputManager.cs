@@ -11,6 +11,7 @@ namespace JustGame.Scripts.Managers
         MOVE_RIGHT,
         MOVE_UP,
         MOVE_DOWN,
+        DASH,
         
         USE_ACTIVE_ABILITY = 10,
     }

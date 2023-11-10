@@ -26,6 +26,7 @@ namespace JustGame.Scripts.Levels
         [SerializeField] private int m_currentRoom;
         [SerializeField] private BoolEvent m_finishRoomEvent;
         [SerializeField] private BoolEvent m_finishZoneEvent;
+        [SerializeField] private Transform m_roomPivot;
         
         private void Start()
         {
