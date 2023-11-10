@@ -65,6 +65,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveSpeed: 30
   m_moveDirection: {x: 0, y: 0}
+  m_obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
   m_animator: {fileID: 3197455417544723860}
 --- !u!114 &1305419148454412164
 MonoBehaviour:
@@ -98,7 +101,6 @@ MonoBehaviour:
   m_collider2D: {fileID: 34240880000921130}
   m_dashDistance: 2
   m_dashSpeed: 20
-  m_particleSystem: {fileID: 0}
 --- !u!114 &4963692780979480153
 MonoBehaviour:
   m_ObjectHideFlags: 0

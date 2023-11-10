@@ -1,10 +1,12 @@
 using JustGame.Scripts.Managers;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Networking;
 using Vector2 = UnityEngine.Vector2;
 
 namespace JustGame.Scripts.Player
 {
-    public enum FacingDirecttion
+    public enum FacingDirection
     {
         LEFT,
         RIGHT,
@@ -15,11 +17,13 @@ namespace JustGame.Scripts.Player
     {
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private Vector2 m_moveDirection;
+        [SerializeField] private LayerMask m_obstacleMask;
         [SerializeField] private Animator m_animator;
+
         private InputManager m_input;
         private Vector2 m_lastDirection;
+        
         private int m_runningAnim = Animator.StringToHash("bool_IsRun");
-
 
         public Vector2 MovingDirection => m_moveDirection == Vector2.zero ? Vector2.right : m_moveDirection;
 
@@ -71,11 +75,32 @@ namespace JustGame.Scripts.Player
             }
         }
 
+        private bool CheckObstacle()
+        {
+            var currentPos = transform.position;
+            bool result = false;
+        
+            if (m_moveDirection.x != 0 && m_moveDirection.y != 0)
+            {
+                result = Physics2D.Raycast(currentPos, m_moveDirection, 0.5f + 0.3f, m_obstacleMask);
+            }
+            else
+            {
+                result = Physics2D.Raycast(currentPos, m_moveDirection, 0.5f, m_obstacleMask);
+            }
+
+            return result;
+        }
+        
         private void UpdateMovement()
         {
+            if (CheckObstacle())
+            {
+                m_moveDirection = Vector2.zero;
+                return;
+            }
             transform.Translate(m_moveDirection * (m_moveSpeed/10 * Time.deltaTime));
         }
-
         
         private void UpdateAnimator()
         {
