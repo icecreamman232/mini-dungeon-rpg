@@ -101,6 +101,9 @@ MonoBehaviour:
   m_collider2D: {fileID: 34240880000921130}
   m_dashDistance: 2
   m_dashSpeed: 20
+  m_obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &4963692780979480153
 MonoBehaviour:
   m_ObjectHideFlags: 0

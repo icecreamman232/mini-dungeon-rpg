@@ -10,6 +10,7 @@ namespace JustGame.Scripts.Player
         [SerializeField] private BoxCollider2D m_collider2D;
         [SerializeField] private float m_dashDistance;
         [SerializeField] private float m_dashSpeed;
+        [SerializeField] private LayerMask m_obstacleMask;
         private InputManager m_inputManager;
         
         
@@ -42,11 +43,23 @@ namespace JustGame.Scripts.Player
             
             var initPos = transform.position;
             var destination = (Vector2)initPos + m_playerMovement.MovingDirection * m_dashDistance;
+
+            bool isHitObstacle = false;
             float distanceTraveled = 0;
-            while (distanceTraveled < m_dashDistance && m_isDashing)
+            Vector2 direction = Vector2.zero;
+            Vector2 currentPos;
+            
+            while (distanceTraveled < m_dashDistance && m_isDashing && !isHitObstacle)
             {
-                transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * m_dashSpeed);
-                distanceTraveled = Vector2.Distance(initPos, transform.position);
+                currentPos = transform.position;
+                direction = (destination - (Vector2)currentPos).normalized;
+                isHitObstacle = Physics2D.Raycast(currentPos, direction, 1f, m_obstacleMask);
+                if (isHitObstacle)
+                {
+                    yield return null;
+                }
+                transform.position = Vector2.MoveTowards(currentPos, destination, Time.deltaTime * m_dashSpeed);
+                distanceTraveled = Vector2.Distance(initPos, currentPos);
                 yield return null;
             }
 
