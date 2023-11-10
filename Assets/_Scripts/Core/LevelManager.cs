@@ -1,4 +1,5 @@
 using JustGame.Scripts.Common;
+using JustGame.Scripts.Data;
 using JustGame.Scripts.Events;
 using UnityEngine;
 
@@ -27,6 +28,11 @@ namespace JustGame.Scripts.Levels
         [SerializeField] private BoolEvent m_finishRoomEvent;
         [SerializeField] private BoolEvent m_finishZoneEvent;
         [SerializeField] private Transform m_roomPivot;
+
+        [Space] 
+        [Header("Castle Layout")] 
+        [SerializeField] private RoomLayoutData[] m_castleRoomLayouts;
+        [SerializeField] private EnemyLayoutData[] m_castleEnemyLayouts;
         
         private void Start()
         {
@@ -34,6 +40,9 @@ namespace JustGame.Scripts.Levels
             m_currentRoom = 0;
             m_finishRoomEvent.AddListener(OnFinishRoom);
         }
+        
+        
+        
         
         private void InitializeNextZone()
         {
