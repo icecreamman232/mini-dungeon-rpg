@@ -37,7 +37,6 @@ namespace JustGame.Scripts.Player
             }
 
             m_isDashing = true;
-            
             //Make player invincible while dashing
             m_collider2D.enabled = false;
             

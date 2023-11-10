@@ -11,10 +11,13 @@ namespace JustGame.Scripts.Player
         [SerializeField] private float m_invulnerableDuration;
         [SerializeField] private IntEvent m_healthEvent;
         private bool m_isInvulnerable;
-
+        private bool m_isDead;
+        public bool IsDead => m_isDead;
+        
         private void Start()
         {
             m_curLife = m_maxLife;
+            m_isDead = false;
         }
 
         public override void TakeDamage(float damage, GameObject instigator)
@@ -36,6 +39,7 @@ namespace JustGame.Scripts.Player
         private void Kill()
         {
             //TODO:Kill process here
+            m_isDead = true;
             this.gameObject.SetActive(false);
         }
         

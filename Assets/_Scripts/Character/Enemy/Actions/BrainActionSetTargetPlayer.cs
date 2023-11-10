@@ -1,4 +1,4 @@
-//using JustGame.Scripts.RuntimeSet;
+using JustGame.Scripts.Runtime;
 using UnityEngine;
 
 namespace JustGame.Scripts.Enemy
@@ -8,15 +8,15 @@ namespace JustGame.Scripts.Enemy
     /// </summary>
     public class BrainActionSetTargetPlayer : BrainAction
     {
-        //[SerializeField] private PlayerComponentSet m_playerComponentSet;
+        [SerializeField] private GlobalRuntimeVariables m_globalRuntime;
         
         public override void DoAction()
         {
-            // if (m_playerComponentSet.Player == null)
-            // {
-            //     return;
-            // }
-            // m_brain.Target = m_playerComponentSet.Player.transform;
+            if (m_globalRuntime.PlayerTransform == null)
+            {
+                return;
+            }
+            m_brain.Target = m_globalRuntime.PlayerTransform;
         }
     }
 }

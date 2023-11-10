@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6858894809554778466}
+  - component: {fileID: 1461449508919828294}
   - component: {fileID: 3243061851043608043}
   - component: {fileID: 1305419148454412164}
   - component: {fileID: 4434867513034952515}
@@ -37,6 +38,19 @@ Transform:
   - {fileID: 6119475281316226040}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1461449508919828294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3190903573364468957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117624aa1887dc3419a3131549d3aa2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_runtimeVariables: {fileID: 11400000, guid: adc8ec07b270ab949abb43d1d20b375b, type: 2}
 --- !u!114 &3243061851043608043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +98,7 @@ MonoBehaviour:
   m_collider2D: {fileID: 34240880000921130}
   m_dashDistance: 2
   m_dashSpeed: 20
+  m_particleSystem: {fileID: 0}
 --- !u!114 &4963692780979480153
 MonoBehaviour:
   m_ObjectHideFlags: 0

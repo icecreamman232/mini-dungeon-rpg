@@ -1,16 +1,15 @@
-//using JustGame.Scripts.RuntimeSet;
+using JustGame.Scripts.Runtime;
 using UnityEngine;
 
 namespace JustGame.Scripts.Enemy
 {
     public class BrainDecisionIsPlayerAlive : BrainDecision
     {
-        //[SerializeField] private PlayerComponentSet m_playerComponentSet;
+        [SerializeField] private GlobalRuntimeVariables m_globalRuntime;
         public override bool CheckDecision()
         {
-            //if (m_playerComponentSet.Health == null) return false;
-            //return m_playerComponentSet.Health.IsDead;
-            return false;
+            if (m_globalRuntime.PlayerHealth == null) return false;
+            return !m_globalRuntime.PlayerHealth.IsDead;
         }
     }
 }
