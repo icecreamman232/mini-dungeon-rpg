@@ -42,7 +42,11 @@ namespace JustGame.Scripts.Player
             m_collider2D.enabled = false;
             
             var initPos = transform.position;
-            var destination = (Vector2)initPos + m_playerMovement.MovingDirection * m_dashDistance;
+            var destination = (Vector2)initPos + 
+                    (m_playerMovement.MovingDirection != Vector2.zero
+                        ? m_playerMovement.MovingDirection 
+                        : m_playerMovement.LastDirection)
+                    * m_dashDistance;
 
             bool isHitObstacle = false;
             float distanceTraveled = 0;

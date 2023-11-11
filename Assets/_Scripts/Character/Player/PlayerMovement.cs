@@ -17,15 +17,15 @@ namespace JustGame.Scripts.Player
     {
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private Vector2 m_moveDirection;
+        [SerializeField] private Vector2 m_lastDirection;
         [SerializeField] private LayerMask m_obstacleMask;
         [SerializeField] private Animator m_animator;
 
         private InputManager m_input;
-        private Vector2 m_lastDirection;
-        
         private int m_runningAnim = Animator.StringToHash("bool_IsRun");
 
-        public Vector2 MovingDirection => m_moveDirection == Vector2.zero ? Vector2.right : m_moveDirection;
+        public Vector2 MovingDirection => m_moveDirection;
+        public Vector2 LastDirection => m_lastDirection;
 
         private void Start()
         {
@@ -100,6 +100,10 @@ namespace JustGame.Scripts.Player
                 return;
             }
             transform.Translate(m_moveDirection * (m_moveSpeed/10 * Time.deltaTime));
+            if (m_moveDirection != Vector2.zero)
+            {
+                m_lastDirection = m_moveDirection;
+            }
         }
         
         private void UpdateAnimator()
