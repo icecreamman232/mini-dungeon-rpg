@@ -1,6 +1,8 @@
-using JustGame.Scripts.Common;
+using System.Collections;
 using JustGame.Scripts.Data;
 using JustGame.Scripts.Events;
+using JustGame.Scripts.Managers;
+using JustGame.Scripts.UI;
 using UnityEngine;
 
 namespace JustGame.Scripts.Levels
@@ -27,8 +29,14 @@ namespace JustGame.Scripts.Levels
         [SerializeField] private int m_currentRoom;
         [SerializeField] private BoolEvent m_finishRoomEvent;
         [SerializeField] private BoolEvent m_finishZoneEvent;
+        [SerializeField] private BoolEvent m_playerTravelToNewRoomEvent;
+        [SerializeField] private GameObject m_playerPrefab;
+        [SerializeField] private Transform m_playerTransform;
+        [SerializeField] private Transform m_spawnPoint;
         [SerializeField] private Transform m_roomPivot;
-
+        [SerializeField] private GameObject m_roomLayout;
+        [SerializeField] private GameObject m_enemyLayout;
+        [SerializeField] private CameraFollowing m_cameraFollowing;
         [Space] 
         [Header("Castle Layout")] 
         [SerializeField] private RoomLayoutData[] m_castleRoomLayouts;
@@ -38,10 +46,10 @@ namespace JustGame.Scripts.Levels
         {
             m_prevZone = m_currentZone;
             m_currentRoom = 0;
-            m_finishRoomEvent.AddListener(OnFinishRoom);
+            m_playerTravelToNewRoomEvent.AddListener(OnFinishRoom);
+
+            FirstTimeLoad();
         }
-        
-        
         
         
         private void InitializeNextZone()
@@ -63,10 +71,65 @@ namespace JustGame.Scripts.Levels
             }
             else
             {
-                m_currentRoom++;
+                StartCoroutine(OnChangeRoom());
             }
         }
 
+        private void FirstTimeLoad()
+        {
+            InputManager.Instance.IsInputActive = false;
+            var player = Instantiate(m_playerPrefab, m_spawnPoint.position, Quaternion.identity);
+            m_playerTransform = player.transform;
+            m_cameraFollowing.SetTarget(m_playerTransform);
+            
+            var roomLayout = GetRoomLayout();
+            var enemyLayoutPrefab = GetEnemyLayout(roomLayout.LayoutType);
+            m_roomLayout = Instantiate(roomLayout.RoomPrefab, Vector3.zero, Quaternion.identity, m_roomPivot);
+            m_enemyLayout = Instantiate(enemyLayoutPrefab, Vector3.zero, Quaternion.identity, m_roomPivot);
+            InputManager.Instance.IsInputActive = true;
+        }
+        
+        
+        private IEnumerator OnChangeRoom()
+        {
+            InputManager.Instance.IsInputActive = false;
+            ScreenFadeController.Instance.FadeOutToBlack();
+            yield return new WaitForSeconds(0.5f);
+            m_playerTransform.position = m_spawnPoint.position;
+            Destroy(m_roomLayout);
+            Destroy(m_enemyLayout);
+            var roomLayout = GetRoomLayout();
+            var enemyLayoutPrefab = GetEnemyLayout(roomLayout.LayoutType);
+            m_roomLayout = Instantiate(roomLayout.RoomPrefab, Vector3.zero, Quaternion.identity, m_roomPivot);
+            m_enemyLayout = Instantiate(enemyLayoutPrefab, Vector3.zero, Quaternion.identity, m_roomPivot);
+            
+            m_currentRoom++;
+            
+            ScreenFadeController.Instance.FadeInFromBlack();
+            yield return new WaitForSeconds(0.5f);
+            InputManager.Instance.IsInputActive = true;
+        }
+
+        private RoomLayoutData GetRoomLayout()
+        {
+            var rand = Random.Range(0, m_castleRoomLayouts.Length);
+            return m_castleRoomLayouts[rand];
+        }
+
+        private GameObject GetEnemyLayout(LayoutType type)
+        {
+            int index = Random.Range(0, m_castleEnemyLayouts.Length);
+            EnemyLayoutData layout = m_castleEnemyLayouts[index];
+            while (layout.LayoutType != type)
+            {
+                index = Random.Range(0, m_castleEnemyLayouts.Length);
+                layout = m_castleEnemyLayouts[index];
+            }
+
+            return layout.EnemyPrefab;
+        }
+        
+        
         private void OnDestroy()
         {
             m_finishRoomEvent.RemoveListener(OnFinishRoom);
