@@ -80,6 +80,7 @@ namespace JustGame.Scripts.Levels
             InputManager.Instance.IsInputActive = false;
             var player = Instantiate(m_playerPrefab, m_spawnPoint.position, Quaternion.identity);
             m_playerTransform = player.transform;
+            m_cameraFollowing.SetCameraPosition(m_playerTransform.position);
             m_cameraFollowing.SetTarget(m_playerTransform);
             
             var roomLayout = GetRoomLayout();
@@ -96,6 +97,7 @@ namespace JustGame.Scripts.Levels
             ScreenFadeController.Instance.FadeOutToBlack();
             yield return new WaitForSeconds(0.5f);
             m_playerTransform.position = m_spawnPoint.position;
+            m_cameraFollowing.SetCameraPosition(m_playerTransform.position);
             Destroy(m_roomLayout);
             Destroy(m_enemyLayout);
             var roomLayout = GetRoomLayout();
