@@ -6,7 +6,7 @@ namespace JustGame.Scripts.LevelElements
     {
         protected virtual void OnPicking()
         {
-            
+            Destroy(this.gameObject);
         }
     }
 

@@ -79,7 +79,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54eb94903386cee48af3a5d020801304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_dropRange: 1
   m_lootData: {fileID: 11400000, guid: 62b45d30c8c292a46ad65045f831026a, type: 2}
+  m_enemyHealth: {fileID: 4085664232183238819}
 --- !u!1 &6093251326930175613
 GameObject:
   m_ObjectHideFlags: 0

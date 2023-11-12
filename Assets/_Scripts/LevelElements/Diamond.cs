@@ -18,6 +18,7 @@ namespace JustGame.Scripts.LevelElements
         protected override void OnPicking()
         {
             m_pickingDiamondEvent.Raise(m_diamondValue);
+            base.OnPicking();
         }
     }
 }

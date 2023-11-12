@@ -18,6 +18,7 @@ namespace JustGame.Scripts.LevelElements
         protected override void OnPicking()
         {
             m_pickingCoinEvent.Raise(m_coinValue);
+            base.OnPicking();
         }
     }
 }
