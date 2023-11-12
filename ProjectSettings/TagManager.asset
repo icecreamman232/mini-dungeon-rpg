@@ -15,7 +15,7 @@ TagManager:
   - Enemy
   - Obstacle
   - Interactible
-  - 
+  - Item
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1090604355
+    locked: 0
+  - name: Item
+    uniqueID: 725136117
     locked: 0
   - name: Player
     uniqueID: 3111805791
