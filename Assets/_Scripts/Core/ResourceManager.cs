@@ -1,14 +1,18 @@
+using System;
 using JustGame.Scripts.Events;
 using UnityEngine;
 
 namespace JustGame.Scripts.Managers
 {
-    public class ResourceManager : MonoBehaviour
+    public class ResourceManager : Singleton<ResourceManager>
     {
         [SerializeField] private int m_coins;
         [SerializeField] private int m_diamonds;
         [SerializeField] private IntEvent m_coinPickingEvent;
         [SerializeField] private IntEvent m_diamondPickingEvent;
+
+        public Action<int> OnChangeCoinAmount;
+        public Action<int> OnChangeDiamondAmount;
 
         private void Start()
         {
@@ -19,11 +23,13 @@ namespace JustGame.Scripts.Managers
         private void AfterPickingCoin(int value)
         {
             m_coins += value;
+            OnChangeCoinAmount?.Invoke(m_coins);
         }
 
         private void AfterPickingDiamond(int value)
         {
             m_diamonds += value;
+            OnChangeDiamondAmount?.Invoke(m_diamonds);
         }
 
     }
