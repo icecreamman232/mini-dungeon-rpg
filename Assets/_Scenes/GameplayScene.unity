@@ -303,6 +303,8 @@ MonoBehaviour:
   m_castleRoomLayouts:
   - {fileID: 11400000, guid: bd3757a807d5c074b9e6fae1bb3cadf7, type: 2}
   m_castleEnemyLayouts:
+  - {fileID: 11400000, guid: 060b7dfcbc88cf445af7a0492cd1b0f5, type: 2}
+  - {fileID: 11400000, guid: 0f112d65efacd9e4db991e52bdd52a79, type: 2}
   - {fileID: 11400000, guid: 882320e7871e12940802282d9dc2f1de, type: 2}
 --- !u!1 &519420028
 GameObject:
