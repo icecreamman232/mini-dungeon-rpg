@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using JustGame.Scripts.Managers;
 using JustGame.Scripts.Player;
 using UnityEngine;
@@ -13,6 +11,8 @@ namespace JustGame.Scripts.Combat
         [SerializeField] private float m_minDamage;
         [SerializeField] private float m_maxDamage;
         [SerializeField] private LayerMask m_targetMask;
+
+        public Action OnHit;
         
         private float GetDamage()
         {
@@ -22,12 +22,12 @@ namespace JustGame.Scripts.Combat
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!LayerManager.IsInLayerMask(other.gameObject.layer, m_targetMask)) return;
-
             DealDamage(other);
         }
 
         private void DealDamage(Collider2D other)
         {
+            OnHit?.Invoke();
             var health = other.GetComponentInParent<Health>();
             if (health != null)
             {
