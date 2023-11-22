@@ -40,7 +40,6 @@ namespace JustGame.Scripts.Combat
 
         private void OnHitTarget()
         {
-            Debug.Log("Hit target");
             m_isGoing = false;
             if (m_destroyOnHit)
             {
