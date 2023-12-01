@@ -9,6 +9,7 @@ namespace JustGame.Scripts.Enemy
         [SerializeField] private Vector2 m_movingDirection;
         private bool m_canMove;
         public Vector2 MovingDirection => m_movingDirection;
+        public bool IsMoving => m_canMove;
 
         public void StartMove()
         {
