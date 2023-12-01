@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,7 +9,11 @@ namespace JustGame.Scripts.Combat
         [Header("Basic")]
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private Vector2 m_moveDirection;
+        [Space]
+        [Header("Damage")]
         [SerializeField] private bool m_destroyOnHit;
+        [SerializeField] private bool m_destroyAtMaxRange;
+        [SerializeField] private float m_maxRange;
         [SerializeField] private DamageHandler m_damageHandler;
         [Space]
         [Header("Rotation")] 
@@ -17,8 +22,11 @@ namespace JustGame.Scripts.Combat
         [SerializeField] private float m_offsetAngle;
         //If this is empty then it will automatically grab parent transform
         [SerializeField] private Transform m_transformToRotate;
-        
+
+        private Vector2 m_initPos;
         private bool m_isGoing;
+
+        public Action OnDestroyAction;
 
         private void Start()
         {
@@ -31,6 +39,7 @@ namespace JustGame.Scripts.Combat
 
         public void SpawnProjectile(Vector2 position, Vector2 direction = default, bool destroyOnHit = true)
         {
+            m_initPos = position;
             transform.position = position;
             
             m_destroyOnHit = destroyOnHit;
@@ -48,7 +57,14 @@ namespace JustGame.Scripts.Combat
 
         private void Movement()
         {
-            
+            if (m_destroyAtMaxRange)
+            {
+                var curRange = Vector2.Distance(m_initPos, transform.position);
+                if (curRange >= m_maxRange)
+                {
+                    DestroyProjectile();
+                }
+            }
             transform.Translate(m_moveDirection * (m_moveSpeed/10 * Time.deltaTime));
         }
 
@@ -64,9 +80,24 @@ namespace JustGame.Scripts.Combat
             m_isGoing = false;
             if (m_destroyOnHit)
             {
-                m_damageHandler.enabled = false;
-                this.gameObject.SetActive(false);
+                DestroyProjectile();
             }
+        }
+
+        /// <summary>
+        /// This doesnt mean to destroy whole game object but will disable and set it inactive instead
+        /// </summary>
+        private void DestroyProjectile()
+        {
+            m_damageHandler.enabled = false;
+            this.gameObject.SetActive(false);
+        }
+        
+        private void OnDisable()
+        {
+            //Even though the name is OnDestroyAction
+            //but it means to be called when projectile finished their life cycle
+            OnDestroyAction?.Invoke();
         }
 
         private void OnDestroy()

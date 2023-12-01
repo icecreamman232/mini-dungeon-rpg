@@ -13,8 +13,7 @@ namespace JustGame.Scripts.Common
         public float Duration;
         private int m_animationParam; 
         
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
             if (TargetAnimator == null)
             {
