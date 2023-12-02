@@ -1,3 +1,4 @@
+using System.Collections;
 using JustGame.Scripts.Managers;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace JustGame.Scripts.Player
         [SerializeField] private LayerMask m_obstacleMask;
         [SerializeField] private Animator m_animator;
 
+        private float m_curSpeed;
         private InputManager m_input;
         private int m_runningAnim = Animator.StringToHash("bool_IsRun");
 
@@ -30,8 +32,28 @@ namespace JustGame.Scripts.Player
         private void Start()
         {
             m_input = InputManager.Instance;
+            m_curSpeed = m_moveSpeed;
         }
 
+        public void SetOverrideSpeed(float newSpeed, float duration = 0)
+        {
+            m_curSpeed = newSpeed;
+            if (duration == 0) return;
+            StartCoroutine(OverrideSpeedRoutine(duration));
+        }
+
+        public void SetOverridePercentSpeed(float percent, float duration = 0)
+        {
+            var newSpeed = m_curSpeed + m_curSpeed * (percent / 100f);
+            SetOverrideSpeed(newSpeed, duration);
+        }
+
+        private IEnumerator OverrideSpeedRoutine(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            m_curSpeed = m_moveSpeed;
+        }
+        
 
         private void Update()
         {
@@ -99,7 +121,7 @@ namespace JustGame.Scripts.Player
                 m_moveDirection = Vector2.zero;
                 return;
             }
-            transform.Translate(m_moveDirection * (m_moveSpeed/10 * Time.deltaTime));
+            transform.Translate(m_moveDirection * (m_curSpeed/10 * Time.deltaTime));
             if (m_moveDirection != Vector2.zero)
             {
                 m_lastDirection = m_moveDirection;

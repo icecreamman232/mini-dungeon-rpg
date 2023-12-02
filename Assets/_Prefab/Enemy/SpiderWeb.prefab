@@ -213,7 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d67e3cf890461a479cee86280d3f8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_canCatch: 0
+  m_lifeCycle: 5
+  m_percentSpeedReduce: 50
+  m_speedReduceDuration: 2
+  m_isActive: 0
   m_targetMask:
     serializedVersion: 2
     m_Bits: 64

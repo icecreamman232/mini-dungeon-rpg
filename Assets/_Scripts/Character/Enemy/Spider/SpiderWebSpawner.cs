@@ -12,7 +12,7 @@ namespace JustGame.Scripts.Enemies
     /// </summary>
     public class SpiderWebSpawner : MonoBehaviour
     {
-        [SerializeField] private ObjectPooler m_objectPooler;
+        [SerializeField] private GameObject m_objectPooler;
         [SerializeField] private Projectile m_projectile;
 
         private void Start()
@@ -22,7 +22,7 @@ namespace JustGame.Scripts.Enemies
 
         public void SpawnWeb()
         {
-            var webGO = m_objectPooler.GetPooledGameObject();
+            var webGO = Instantiate(m_objectPooler, transform.position, Quaternion.identity);
             var web = webGO.GetComponentInChildren<SpiderWeb>();
             web.Spawn(transform.position);
         }

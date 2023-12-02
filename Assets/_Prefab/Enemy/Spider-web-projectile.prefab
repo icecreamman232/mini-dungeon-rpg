@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4069579232516592142}
   - component: {fileID: 5920749745756768918}
   - component: {fileID: 5827851100122744140}
-  - component: {fileID: 8019335644285106293}
   m_Layer: 7
   m_Name: Spider-web-projectile
   m_TagString: Untagged
@@ -68,25 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33154e96f77aa8a4383dea88060fdc1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_objectPooler: {fileID: 8019335644285106293}
+  m_objectPooler: {fileID: 3803145958867782346, guid: 31f6ba8925800214db2c08890cc5ea9e, type: 3}
   m_projectile: {fileID: 5920749745756768918}
---- !u!114 &8019335644285106293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070149064556133601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98719b2355d3cb429d5c30642c78834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Parent: {fileID: 0}
-  Offset: {x: 0, y: 0}
-  IsSharePool: 1
-  ObjectToPool: {fileID: 3803145958867782346, guid: 31f6ba8925800214db2c08890cc5ea9e, type: 3}
-  PoolSize: 5
 --- !u!1 &6855917483114741864
 GameObject:
   m_ObjectHideFlags: 0
