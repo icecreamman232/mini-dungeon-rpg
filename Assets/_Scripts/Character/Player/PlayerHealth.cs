@@ -1,4 +1,5 @@
 using System.Collections;
+using JustGame.Scripts.Data;
 using JustGame.Scripts.Events;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace JustGame.Scripts.Player
         [SerializeField] private int m_curLife;
         [SerializeField] private float m_invulnerableDuration;
         [SerializeField] private IntEvent m_healthEvent;
+        [SerializeField] private ScreenShakeEvent m_screenShakeEvent;
+        [SerializeField] private ShakeProfile m_takeDmgShakeProfile;
+        
         private bool m_isInvulnerable;
         private bool m_isDead;
         public bool IsDead => m_isDead;
@@ -26,6 +30,7 @@ namespace JustGame.Scripts.Player
             
             m_curLife -= 1;
             m_healthEvent.Raise(m_curLife);
+            m_screenShakeEvent.DoShake(m_takeDmgShakeProfile);
             
             if (m_curLife <= 0)
             {
