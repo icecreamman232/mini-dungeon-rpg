@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerGotHitShakeProfile
   m_EditorClassIdentifier: 
   ShakeDuration: 0.5
-  ShakePower: 0.1
+  ShakePower: 0.12
   Frequency: 0.02
