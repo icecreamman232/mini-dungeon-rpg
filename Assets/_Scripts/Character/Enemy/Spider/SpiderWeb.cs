@@ -1,4 +1,5 @@
 using System.Collections;
+using JustGame.Scripts.Combat;
 using JustGame.Scripts.Common;
 using JustGame.Scripts.Managers;
 using JustGame.Scripts.Player;
@@ -42,9 +43,9 @@ namespace JustGame.Scripts.Enemies
 
         private void TriggerWeb(Collider2D target)
         {
-            var movement = target.gameObject.GetComponentInParent<PlayerMovement>();
-            movement.SetOverridePercentSpeed(-m_percentSpeedReduce, m_speedReduceDuration);
-            Destroy(this.gameObject);
+            var movement = target.gameObject.GetComponentInParent<SlowEffector>();
+            movement.TriggerSlow(-m_percentSpeedReduce, m_speedReduceDuration);
+            Destroy(this.transform.parent.gameObject);
         }
     }
 }

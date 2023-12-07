@@ -1,8 +1,8 @@
 using System.Collections;
+using JustGame.Scripts.Combat;
 using JustGame.Scripts.Managers;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Networking;
+
 using Vector2 = UnityEngine.Vector2;
 
 namespace JustGame.Scripts.Player
@@ -14,7 +14,7 @@ namespace JustGame.Scripts.Player
         UP,
         DOWN,
     }
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, SlowEffector
     {
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private Vector2 m_moveDirection;
@@ -131,6 +131,11 @@ namespace JustGame.Scripts.Player
         private void UpdateAnimator()
         {
             m_animator.SetBool(m_runningAnim, m_moveDirection != Vector2.zero);
+        }
+        
+        public void TriggerSlow(float slowPercent, float duration)
+        {
+            SetOverridePercentSpeed(slowPercent, duration);
         }
     }
 }
