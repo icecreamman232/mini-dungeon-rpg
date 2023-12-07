@@ -489,6 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveSpeed: 20
   m_movingDirection: {x: 0, y: 0}
+  m_canBeSlow: 0
 --- !u!114 &7382354690449956396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,7 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parent: {fileID: 0}
   Offset: {x: 0, y: 0}
-  IsSharePool: 1
+  IsSharePool: 0
   ObjectToPool: {fileID: 2070149064556133601, guid: 319ad25d2c7b9114b877dbc88bd58e5f, type: 3}
   PoolSize: 10
 --- !u!1001 &2897891049310786725

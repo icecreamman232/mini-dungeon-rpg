@@ -43,8 +43,9 @@ namespace JustGame.Scripts.Enemies
 
         private void TriggerWeb(Collider2D target)
         {
-            var movement = target.gameObject.GetComponentInParent<SlowEffector>();
-            movement.TriggerSlow(-m_percentSpeedReduce, m_speedReduceDuration);
+            var slowEffector = target.gameObject.GetComponentInParent<SlowEffector>();
+            if (slowEffector == null) return;
+            slowEffector.TriggerSlow(-m_percentSpeedReduce, m_speedReduceDuration);
             Destroy(this.transform.parent.gameObject);
         }
     }
