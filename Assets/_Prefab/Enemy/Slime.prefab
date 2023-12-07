@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveSpeed: 15
   m_movingDirection: {x: 0, y: 0}
+  m_canBeSlow: 1
 --- !u!114 &5232644656811522806
 MonoBehaviour:
   m_ObjectHideFlags: 0
