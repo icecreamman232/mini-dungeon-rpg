@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a4433260be05f4b8ce37c5153a7af9, type: 3}
   m_Name: PlayerGotHitShakeProfile
   m_EditorClassIdentifier: 
-  ShakeDuration: 0.5
-  ShakePower: 0.12
+  ShakeDuration: 0.2
+  ShakePower: 0.05
   Frequency: 0.02
