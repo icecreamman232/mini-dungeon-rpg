@@ -88,6 +88,7 @@ MonoBehaviour:
   m_healthEvent: {fileID: 11400000, guid: 1c9fb56fb6514bd4eaa20f7bd9f20972, type: 2}
   m_screenShakeEvent: {fileID: 11400000, guid: 45ef042f72bb7f14cbe3aa16667c63e7, type: 2}
   m_takeDmgShakeProfile: {fileID: 11400000, guid: bbb1ee8e24d5d3a4eb1428bb6e6c9f23, type: 2}
+  m_cheatData: {fileID: 11400000, guid: b38be0dac413e82488a34c2ccbea014a, type: 2}
 --- !u!114 &4434867513034952515
 MonoBehaviour:
   m_ObjectHideFlags: 0

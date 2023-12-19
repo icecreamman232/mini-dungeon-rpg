@@ -13,6 +13,7 @@ namespace JustGame.Scripts.Player
         [SerializeField] private IntEvent m_healthEvent;
         [SerializeField] private ScreenShakeEvent m_screenShakeEvent;
         [SerializeField] private ShakeProfile m_takeDmgShakeProfile;
+        [SerializeField] private CheatData m_cheatData;
         
         private bool m_isInvulnerable;
         private bool m_isDead;
@@ -26,6 +27,13 @@ namespace JustGame.Scripts.Player
 
         public override void TakeDamage(float damage, GameObject instigator)
         {
+            //If invulnerable cheat we still trigger effect but player wont be hit
+            if (m_cheatData.IsCheatEnable && m_cheatData.Invulnerable)
+            {
+                m_screenShakeEvent.DoShake(m_takeDmgShakeProfile);
+                return;
+            }
+            
             if (m_isInvulnerable) return;
             
             m_curLife -= 1;
