@@ -1,15 +1,15 @@
-using System;
 using System.Collections;
 using JustGame.Scripts.Common;
 using JustGame.Scripts.Managers;
 using JustGame.Scripts.Player;
 using UnityEngine;
 
-namespace JustGame.Scripts.Weapon
+namespace JustGame.Scripts.Weapons
 {
     public class PlayerMeleeWeapon : MonoBehaviour
     {
         [SerializeField] private PlayerAim m_playerAim;
+        [SerializeField] private PlayerThrowingWeapon m_throwingWeapon;
         [SerializeField] private Transform m_damageArea;
         [SerializeField] private BoxCollider2D m_damageAreaCollider;
         [SerializeField] private float m_atkDuration;
@@ -19,6 +19,8 @@ namespace JustGame.Scripts.Weapon
         private bool m_atkInProgress;
         private float m_rotateAngle;
         private InputManager m_input;
+
+        public bool IsInProgress => m_atkInProgress;
 
         private void Start()
         {
@@ -40,6 +42,9 @@ namespace JustGame.Scripts.Weapon
 
         public void WeaponStart()
         {
+            if (m_throwingWeapon.IsInProgress) return;
+            if (m_atkInProgress) return;
+            
             StartCoroutine(AttackRoutine());
         }
 
