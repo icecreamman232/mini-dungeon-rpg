@@ -38,7 +38,8 @@ namespace JustGame.Scripts.Managers
         private Dictionary<BindingAction, ButtonStates> m_mouseBtnDictionary;
         private bool m_isInputActive;
 
-        public Action<Vector2> RightClickCallback;
+        public Action<Vector2> RightClickDownCallback;
+        public Action<Vector2> RightClickUpCallback;
         
         public bool IsInputActive
         {
@@ -88,6 +89,7 @@ namespace JustGame.Scripts.Managers
             }
         }
 
+        #region Keyboards
         public bool GetKeyClicked(BindingAction keyAction)
         {
             return (m_buttonDictionary[keyAction] == ButtonStates.ButtonClicked) && IsInputActive;
@@ -101,7 +103,9 @@ namespace JustGame.Scripts.Managers
         {
             return (m_buttonDictionary[keyAction] == ButtonStates.ButtonDown) && IsInputActive;
         }
-
+        #endregion
+        
+        #region Mouse
         public bool GetLeftClick()
         {
             return IsInputActive && Input.GetMouseButton(0);
@@ -117,11 +121,26 @@ namespace JustGame.Scripts.Managers
             return IsInputActive && Input.GetMouseButtonUp(0);
         }
         
+        public bool GetRightClick()
+        {
+            return IsInputActive && Input.GetMouseButton(1);
+        }
+        
         public bool GetRightClickDown()
         {
             if (IsInputActive && Input.GetMouseButtonDown(1))
             {
-                RightClickCallback?.Invoke(Input.mousePosition);
+                RightClickDownCallback?.Invoke(Input.mousePosition);
+                return true;
+            }
+            return false;
+        }
+        
+        public bool GetRightClickUp()
+        {
+            if (IsInputActive && Input.GetMouseButtonUp(1))
+            {
+                RightClickUpCallback?.Invoke(Input.mousePosition);
                 return true;
             }
             return false;
@@ -133,6 +152,8 @@ namespace JustGame.Scripts.Managers
             pos.z = 0;
             return pos;
         }
+        
+        #endregion
 
         public void Reset()
         {

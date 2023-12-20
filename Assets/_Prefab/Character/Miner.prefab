@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4434867513034952515}
   - component: {fileID: 4963692780979480153}
   m_Layer: 6
-  m_Name: Knight
+  m_Name: Miner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,7 @@ SpriteRenderer:
   m_SortingLayerID: -1183161505
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 907975429, guid: 494b5d76fee093240a8d67243723dc9f, type: 3}
+  m_Sprite: {fileID: 341710795, guid: cc4ab65555c351e4595819bd94b627fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -261,7 +261,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -272,7 +272,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.55}
+  m_Size: {x: 0.35, y: 0.5}
   m_EdgeRadius: 0
 --- !u!50 &8135936844270362256
 Rigidbody2D:
