@@ -14,6 +14,7 @@ namespace JustGame.Scripts.Weapons
         [SerializeField] private LayerMask m_targetMask;
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private float m_movingRange;
+        [SerializeField] private float m_minDistanceToPlayer;
 
         private Vector2 m_startPos;
         private Vector2 m_movingDirection;
@@ -41,13 +42,6 @@ namespace JustGame.Scripts.Weapons
         private void StartMovingBackward()
         {
             m_currentState = ThrowingPickAxeState.MOVING_BACKWARD;
-            
-            //Set current direction to opposite side
-            m_movingDirection.x *= -1;
-            m_movingDirection.y *= -1;
-            
-            m_startPos = transform.position;
-            m_traveledDistance = 0;
         }
 
         public void StopMoving()
@@ -67,21 +61,24 @@ namespace JustGame.Scripts.Weapons
                     //We do not update any movement here so we must return
                     return;
                 case ThrowingPickAxeState.MOVING_FORWARD:
+                    transform.Translate(m_movingDirection * (m_moveSpeed * Time.deltaTime));
+                    m_traveledDistance = Vector2.Distance(m_startPos, transform.position);
                     if (m_traveledDistance >= m_movingRange)
                     {
                         StartMovingBackward();
                     }
                     break;
                 case ThrowingPickAxeState.MOVING_BACKWARD:
-                    if (m_traveledDistance >= m_movingRange)
+                    m_movingDirection = (m_player.position - transform.position).normalized;
+                    transform.Translate(m_movingDirection * (m_moveSpeed * Time.deltaTime));
+                    //We keep moving to wherever player's at
+                    var distToPlayer = Vector2.Distance(transform.position, m_player.position);
+                    if (distToPlayer <= m_minDistanceToPlayer)
                     {
                         StopMoving();
                     }
                     break;
             }
-            
-            transform.Translate(m_movingDirection * (m_moveSpeed * Time.deltaTime));
-            m_traveledDistance = Vector2.Distance(m_startPos, transform.position);
         }
     }
 }
