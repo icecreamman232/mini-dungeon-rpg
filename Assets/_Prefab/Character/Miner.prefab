@@ -47,6 +47,7 @@ MonoBehaviour:
   m_playerAim: {fileID: 4963692780979480153}
   m_meleeWeapon: {fileID: 2100416936507921568}
   m_throwingPickAxePrefab: {fileID: 1140267999552001717, guid: dbee3aaec1774d34d88794101877e157, type: 3}
+  m_pickAxe: {fileID: 0}
 --- !u!1 &3190903573364468957
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,8 +361,8 @@ GameObject:
   - component: {fileID: 2436089340192641248}
   - component: {fileID: 7413453457511190907}
   - component: {fileID: 3515673472615612228}
-  - component: {fileID: 3782650764685033793}
   - component: {fileID: 6994365011446103673}
+  - component: {fileID: 4136337999607957158}
   m_Layer: 0
   m_Name: DamageArea
   m_TagString: Untagged
@@ -502,23 +503,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &3782650764685033793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4689472486414952592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cccd060ad1edb84b933aa4d70d6d0f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_minDamage: 10
-  m_maxDamage: 15
-  m_targetMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &6994365011446103673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,6 +518,24 @@ MonoBehaviour:
   TargetAnimator: {fileID: 7413453457511190907}
   ParameterName: bool_Slash
   Duration: 0.217
+--- !u!114 &4136337999607957158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689472486414952592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4e6aabb7a721c49b2aad6964026a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_minDamage: 0
+  m_maxDamage: 0
+  m_targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  m_playerData: {fileID: 11400000, guid: cb3a307598b0ba84f939d0ffe169bf51, type: 2}
 --- !u!1 &6278179064355923308
 GameObject:
   m_ObjectHideFlags: 0

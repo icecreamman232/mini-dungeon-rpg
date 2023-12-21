@@ -8,13 +8,13 @@ namespace JustGame.Scripts.Combat
 {
     public class DamageHandler : MonoBehaviour
     {
-        [SerializeField] private float m_minDamage;
-        [SerializeField] private float m_maxDamage;
-        [SerializeField] private LayerMask m_targetMask;
+        [SerializeField] protected float m_minDamage;
+        [SerializeField] protected float m_maxDamage;
+        [SerializeField] protected LayerMask m_targetMask;
 
         public Action OnHit;
         
-        private float GetDamage()
+        protected float GetDamage()
         {
             return Random.Range(m_minDamage, m_maxDamage + 1);
         }
@@ -25,7 +25,7 @@ namespace JustGame.Scripts.Combat
             DealDamage(other);
         }
 
-        private void DealDamage(Collider2D other)
+        protected void DealDamage(Collider2D other)
         {
             OnHit?.Invoke();
             var health = other.GetComponentInParent<Health>();
