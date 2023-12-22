@@ -17,9 +17,9 @@ namespace JustGame.Scripts.Combat
             m_playerAim = aimComponent;
         }
         
-        public void UpdateRotation(float offsetAngle)
+        public void UpdateRotation(Vector2 direction, float offsetAngle)
         {
-            m_rotateAngle = Mathf.Atan2(m_playerAim.AimDirection.y, m_playerAim.AimDirection.x) * Mathf.Rad2Deg + offsetAngle;
+            m_rotateAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + offsetAngle;
             m_targetTransform.rotation = Quaternion.AngleAxis(m_rotateAngle, Vector3.forward);
         }
     }

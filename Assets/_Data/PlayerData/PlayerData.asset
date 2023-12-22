@@ -16,3 +16,5 @@ MonoBehaviour:
   m_meleeMaxDamage: 15
   m_rangeMinDamage: 8
   m_rangeMaxDamage: 10
+  m_flyingSpeed: 15
+  m_flyingRange: 5

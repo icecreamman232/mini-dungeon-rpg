@@ -1,4 +1,5 @@
 using JustGame.Scripts.Combat;
+using JustGame.Scripts.Data;
 using JustGame.Scripts.Player;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ namespace JustGame.Scripts.Weapons
         [SerializeField] private float m_movingRange;
         [SerializeField] private float m_minDistanceToPlayer;
         [SerializeField] private RotateSprite m_rotateSprite;
+        [SerializeField] private PlayerData m_playerData;
 
         private Vector2 m_startPos;
         private Vector2 m_movingDirection;
@@ -25,7 +27,8 @@ namespace JustGame.Scripts.Weapons
         private bool m_isInProgress;
         private Transform m_player;
         private GameObject m_pickAxeSpriteGO;
-
+        private PlayerAim m_playerAim;
+        
         private readonly float OFFSET_PICKAXE_SPRITE_ANGLE = -45f;
         
         public bool IsInProgress => m_isInProgress;
@@ -33,10 +36,12 @@ namespace JustGame.Scripts.Weapons
         public void Initialize(Transform player)
         {
             m_player = player;
-            m_rotateSprite.AssignPlayerAimComponent(m_player.GetComponent<PlayerAim>());
+            m_playerAim = m_player.GetComponent<PlayerAim>();
             m_pickAxeSpriteGO = transform.GetChild(0).gameObject;
             m_pickAxeSpriteGO.SetActive(false); //Hide the throwing pick axe on start
             m_currentState = ThrowingPickAxeState.READY;
+            m_moveSpeed = m_playerData.FlyingSpeed;
+            m_movingRange = m_playerData.FlyingRange;
         }
         
         public void StartMoving(Vector2 direction)
@@ -74,7 +79,7 @@ namespace JustGame.Scripts.Weapons
                 case ThrowingPickAxeState.MOVING_FORWARD:
                     transform.Translate(m_movingDirection * (m_moveSpeed * Time.deltaTime));
                     m_traveledDistance = Vector2.Distance(m_startPos, transform.position);
-                    m_rotateSprite.UpdateRotation(OFFSET_PICKAXE_SPRITE_ANGLE);
+                    m_rotateSprite.UpdateRotation(m_playerAim.AimDirection, OFFSET_PICKAXE_SPRITE_ANGLE);
                     if (m_traveledDistance >= m_movingRange)
                     {
                         StartMovingBackward();
@@ -83,7 +88,7 @@ namespace JustGame.Scripts.Weapons
                 case ThrowingPickAxeState.MOVING_BACKWARD:
                     m_movingDirection = (m_player.position - transform.position).normalized;
                     transform.Translate(m_movingDirection * (m_moveSpeed * Time.deltaTime));
-                    m_rotateSprite.UpdateRotation(OFFSET_PICKAXE_SPRITE_ANGLE);
+                    m_rotateSprite.UpdateRotation(m_playerAim.AimDirection * -1, OFFSET_PICKAXE_SPRITE_ANGLE);
                     //We keep moving to wherever player's at
                     var distToPlayer = Vector2.Distance(transform.position, m_player.position);
                     if (distToPlayer <= m_minDistanceToPlayer)
