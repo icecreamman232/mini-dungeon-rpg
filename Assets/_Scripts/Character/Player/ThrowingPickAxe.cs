@@ -1,3 +1,4 @@
+using System;
 using JustGame.Scripts.Combat;
 using JustGame.Scripts.Data;
 using JustGame.Scripts.Player;
@@ -15,6 +16,7 @@ namespace JustGame.Scripts.Weapons
     {
         [SerializeField] private ThrowingPickAxeState m_currentState;
         [SerializeField] private LayerMask m_targetMask;
+        [SerializeField] private ObstacleHandler m_obstacleHandler;
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private float m_movingRange;
         [SerializeField] private float m_minDistanceToPlayer;
@@ -42,6 +44,7 @@ namespace JustGame.Scripts.Weapons
             m_currentState = ThrowingPickAxeState.READY;
             m_moveSpeed = m_playerData.FlyingSpeed;
             m_movingRange = m_playerData.FlyingRange;
+            m_obstacleHandler.OnHitObstacle += OnHittingObstacle;
         }
         
         public void StartMoving(Vector2 direction)
@@ -67,6 +70,14 @@ namespace JustGame.Scripts.Weapons
             m_currentState = ThrowingPickAxeState.READY;
         }
 
+        private void OnHittingObstacle()
+        {
+            if (m_currentState == ThrowingPickAxeState.MOVING_FORWARD)
+            {
+                StartMovingBackward();
+            }
+        }
+        
         private void Update()
         {
             if (!m_isInProgress) return;
@@ -97,6 +108,11 @@ namespace JustGame.Scripts.Weapons
                     }
                     break;
             }
+        }
+
+        private void OnDestroy()
+        {
+            m_obstacleHandler.OnHitObstacle -= OnHittingObstacle;
         }
     }
 }
