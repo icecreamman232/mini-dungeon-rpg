@@ -10,13 +10,7 @@ namespace JustGame.Scripts.Combat
     {
         [SerializeField] private Transform m_targetTransform;
         private float m_rotateAngle;
-        private PlayerAim m_playerAim;
-        
-        public void AssignPlayerAimComponent(PlayerAim aimComponent)
-        {
-            m_playerAim = aimComponent;
-        }
-        
+
         public void UpdateRotation(Vector2 direction, float offsetAngle)
         {
             m_rotateAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + offsetAngle;
