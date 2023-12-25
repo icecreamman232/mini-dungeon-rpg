@@ -536,7 +536,7 @@ MonoBehaviour:
   m_minDamage: 0
   m_maxDamage: 0
   m_knockBackForce: 30
-  m_knockBackDuration: 1
+  m_knockBackDuration: 0.3
   m_playerData: {fileID: 11400000, guid: cb3a307598b0ba84f939d0ffe169bf51, type: 2}
 --- !u!1 &6278179064355923308
 GameObject:

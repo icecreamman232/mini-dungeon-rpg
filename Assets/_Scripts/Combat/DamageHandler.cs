@@ -45,7 +45,6 @@ namespace JustGame.Scripts.Combat
                     var enemyMovement = target.gameObject.GetComponentInParent<EnemyMovement>();
                     if (enemyMovement == null)
                     {
-                        Debug.LogError($"Enemy Movement not found on {target.gameObject.name}");
                         return;
                     }
                     var knockBackDir = (target.transform.position - transform.position).normalized;

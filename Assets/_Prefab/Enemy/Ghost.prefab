@@ -270,8 +270,8 @@ MonoBehaviour:
   m_curState: 0
   m_moveSpeed: 30
   m_movingDirection: {x: 0, y: 0}
-  m_immuneKnockBack: 0
-  m_deceleration: 60
+  m_immuneKnockBack: 1
+  m_deceleration: 0
   m_canBeSlow: 0
 --- !u!114 &982457739086497496
 MonoBehaviour:

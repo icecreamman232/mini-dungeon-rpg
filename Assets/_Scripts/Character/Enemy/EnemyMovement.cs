@@ -39,12 +39,18 @@ namespace JustGame.Scripts.Enemy
 
         public void StartMove()
         {
+            //While being knockback,
+            //we wont update direction to avoid breaking knockback routine
+            if (m_curState == EnemyMovementState.KNOCK_BACK) return;
             m_canMove = true;
             m_curState = EnemyMovementState.MOVING;
         }
 
         public void StopMove()
         {
+            //While being knockback,
+            //we wont update direction to avoid breaking knockback routine
+            if (m_curState == EnemyMovementState.KNOCK_BACK) return;
             m_canMove = false;
             m_curState = EnemyMovementState.STOP;
         }
@@ -80,7 +86,6 @@ namespace JustGame.Scripts.Enemy
                     {
                         m_curSpeed -= m_deceleration * Time.deltaTime;
                         m_curSpeed = Mathf.Clamp(m_curSpeed, 0, m_moveSpeed);
-                        Debug.Log($"Speed {m_curSpeed}");
                     }
                     break;
             }

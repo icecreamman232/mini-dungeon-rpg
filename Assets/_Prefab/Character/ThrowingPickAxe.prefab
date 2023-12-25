@@ -360,8 +360,8 @@ MonoBehaviour:
     m_Bits: 128
   m_minDamage: 0
   m_maxDamage: 0
-  m_knockBackForce: 100
-  m_knockBackDuration: 1
+  m_knockBackForce: 30
+  m_knockBackDuration: 0.3
   m_playerData: {fileID: 11400000, guid: cb3a307598b0ba84f939d0ffe169bf51, type: 2}
 --- !u!114 &6757773166880423772
 MonoBehaviour:
