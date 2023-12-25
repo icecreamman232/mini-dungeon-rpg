@@ -256,7 +256,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -355,11 +355,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467a34338b41a9f4abd80676c0b15e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_minDamage: 0
-  m_maxDamage: 0
   m_targetMask:
     serializedVersion: 2
     m_Bits: 128
+  m_minDamage: 0
+  m_maxDamage: 0
+  m_knockBackForce: 100
+  m_knockBackDuration: 1
   m_playerData: {fileID: 11400000, guid: cb3a307598b0ba84f939d0ffe169bf51, type: 2}
 --- !u!114 &6757773166880423772
 MonoBehaviour:

@@ -65,8 +65,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e778bdff831b544b70ce94f3c84fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_curState: 0
   m_moveSpeed: 40
   m_movingDirection: {x: 0, y: 0}
+  m_immuneKnockBack: 0
+  m_deceleration: 80
   m_canBeSlow: 1
 --- !u!114 &3658362727914847112
 MonoBehaviour:
@@ -568,11 +571,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cccd060ad1edb84b933aa4d70d6d0f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_minDamage: 10
-  m_maxDamage: 20
   m_targetMask:
     serializedVersion: 2
     m_Bits: 64
+  m_minDamage: 10
+  m_maxDamage: 20
+  m_knockBackForce: 0
+  m_knockBackDuration: 0
 --- !u!1001 &3122182140478397026
 PrefabInstance:
   m_ObjectHideFlags: 0
