@@ -27,6 +27,8 @@ namespace JustGame.Scripts.Enemy
 
         private float m_curSpeed;
         private bool m_canMove;
+        private bool m_forbiddenMoving;
+        
         public Vector2 MovingDirection => m_movingDirection;
         public bool IsMoving => m_canMove;
 
@@ -42,17 +44,26 @@ namespace JustGame.Scripts.Enemy
             //While being knockback,
             //we wont update direction to avoid breaking knockback routine
             if (m_curState == EnemyMovementState.KNOCK_BACK) return;
-            m_canMove = true;
+            
             m_curState = EnemyMovementState.MOVING;
+            m_canMove = true;
+            m_forbiddenMoving = false;
         }
 
+        public void PauseMoving()
+        {
+            m_canMove = false;
+        }
+        
         public void StopMove()
         {
             //While being knockback,
             //we wont update direction to avoid breaking knockback routine
             if (m_curState == EnemyMovementState.KNOCK_BACK) return;
-            m_canMove = false;
+            
             m_curState = EnemyMovementState.STOP;
+            m_canMove = false;
+            m_forbiddenMoving = true;
         }
 
         public void SetDirection(Vector2 newDirection)
@@ -65,7 +76,8 @@ namespace JustGame.Scripts.Enemy
         
         private void Update()
         {
-            if (!m_canMove) return;
+            if (m_forbiddenMoving) return;
+            if (!m_canMove && m_curState != EnemyMovementState.KNOCK_BACK) return;
             ComputeSpeed();
             transform.Translate(m_movingDirection * (Time.deltaTime * m_curSpeed/10));
         }
@@ -105,7 +117,7 @@ namespace JustGame.Scripts.Enemy
             {
                 yield break;
             }
-            Debug.Log("Enter knockback routine");
+            
             var prevDir = m_movingDirection;
             var prevState = m_curState;
             var prevSpeed = m_curSpeed;
