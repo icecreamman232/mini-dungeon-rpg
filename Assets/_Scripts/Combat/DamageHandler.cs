@@ -14,6 +14,7 @@ namespace JustGame.Scripts.Combat
         [SerializeField] protected float m_minDamage;
         [SerializeField] protected float m_maxDamage;
         [Header("KnockBack")] 
+        [SerializeField] protected bool m_isPreventKnockBack;
         [SerializeField] protected float m_knockBackForce;
         [SerializeField] protected float m_knockBackDuration;
 
@@ -40,6 +41,10 @@ namespace JustGame.Scripts.Combat
 
                 if (target.gameObject.layer == LayerManager.EnemyLayer)
                 {
+                    if (m_isPreventKnockBack)
+                    {
+                        return;
+                    }
                     //Enemy movement should be on parent GO.
                     //The collider is on the body GO, hence we query the parent
                     var enemyMovement = target.gameObject.GetComponentInParent<EnemyMovement>();

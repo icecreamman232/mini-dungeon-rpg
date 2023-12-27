@@ -51,6 +51,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   m_obstacleHandler: {fileID: 6757773166880423772}
+  m_rangeDamageHandler: {fileID: 7137640078909809908}
   m_moveSpeed: 20
   m_movingRange: 6
   m_minDistanceToPlayer: 0.3
@@ -360,6 +361,7 @@ MonoBehaviour:
     m_Bits: 128
   m_minDamage: 0
   m_maxDamage: 0
+  m_isPreventKnockBack: 0
   m_knockBackForce: 30
   m_knockBackDuration: 0.3
   m_playerData: {fileID: 11400000, guid: cb3a307598b0ba84f939d0ffe169bf51, type: 2}

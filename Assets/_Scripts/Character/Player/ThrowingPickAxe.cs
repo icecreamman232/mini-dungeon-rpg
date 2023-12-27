@@ -17,6 +17,7 @@ namespace JustGame.Scripts.Weapons
         [SerializeField] private ThrowingPickAxeState m_currentState;
         [SerializeField] private LayerMask m_targetMask;
         [SerializeField] private ObstacleHandler m_obstacleHandler;
+        [SerializeField] private RangePickAxeDamageHandler m_rangeDamageHandler;
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private float m_movingRange;
         [SerializeField] private float m_minDistanceToPlayer;
@@ -55,11 +56,16 @@ namespace JustGame.Scripts.Weapons
             m_movingDirection = direction;
             m_startPos = m_player.position;
             transform.position = m_startPos;
+            m_rangeDamageHandler.ResetDamage();
+            m_rangeDamageHandler.EnableKnockBack();
         }
 
         private void StartMovingBackward()
         {
             m_currentState = ThrowingPickAxeState.MOVING_BACKWARD;
+            //Reduce damage when the pickaxe returning to player
+            m_rangeDamageHandler.DisableKnockBack();
+            m_rangeDamageHandler.SetDamageReduce(m_playerData.RangeDamageReducePercentage);
         }
 
         public void StopMoving()
