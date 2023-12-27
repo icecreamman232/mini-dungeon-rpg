@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb907a2689b221f4688b2c12dba9fe86, type: 3}
   m_Name: CheatData
   m_EditorClassIdentifier: 
-  m_isCheatEnable: 0
-  m_invulnerable: 1
+  m_isCheatEnable: 1
+  m_invulnerable: 0

@@ -8,8 +8,8 @@ namespace JustGame.Scripts.UI
     public class PlayerHealthBarUI : MonoBehaviour
     {
         [SerializeField] private IntEvent m_healthEvent;
-        [SerializeField] private List<GameObject> m_lifeIconList;
-
+        [SerializeField] private List<HeartIconController> m_lifeIconList;
+        
         private void Start()
         {
             m_healthEvent.AddListener(OnPlayerUpdateHealth);
@@ -17,7 +17,7 @@ namespace JustGame.Scripts.UI
 
         private void OnPlayerUpdateHealth(int currentLife)
         {
-            m_lifeIconList[currentLife].SetActive(false);
+            m_lifeIconList[currentLife].SetToNoLifeColor();
         }
 
         private void OnDestroy()
