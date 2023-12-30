@@ -24,6 +24,7 @@ namespace JustGame.Scripts.Levels
 
     public class LevelManager : MonoBehaviour
     {
+        [Header("References")]
         [SerializeField] private Zone m_prevZone;
         [SerializeField] private Zone m_currentZone;
         [SerializeField] private int m_currentRoom;
@@ -37,6 +38,11 @@ namespace JustGame.Scripts.Levels
         [SerializeField] private GameObject m_roomLayout;
         [SerializeField] private GameObject m_enemyLayout;
         [SerializeField] private CameraFollowing m_cameraFollowing;
+
+        [Space] [Header("Test Mode")] 
+        [SerializeField] private bool m_isTestMode;
+        [SerializeField] private RoomLayoutData m_testModeRoomLayout;
+        [SerializeField] private EnemyLayoutData m_testModeEnemyLayout;
         [Space] 
         [Header("Castle Layout")] 
         [SerializeField] private RoomLayoutData[] m_castleRoomLayouts;
@@ -114,12 +120,21 @@ namespace JustGame.Scripts.Levels
 
         private RoomLayoutData GetRoomLayout()
         {
+            if (m_isTestMode)
+            {
+                return m_testModeRoomLayout;
+            }
             var rand = Random.Range(0, m_castleRoomLayouts.Length);
             return m_castleRoomLayouts[rand];
         }
 
         private GameObject GetEnemyLayout(LayoutType type)
         {
+            if (m_isTestMode)
+            {
+                return m_testModeEnemyLayout.EnemyPrefab;
+            }
+            
             int index = Random.Range(0, m_castleEnemyLayouts.Length);
             EnemyLayoutData layout = m_castleEnemyLayouts[index];
             while (layout.LayoutType != type)
