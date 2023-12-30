@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using JustGame.Scripts.Combat;
+using JustGame.Scripts.Managers;
 using UnityEngine;
 
 namespace JustGame.Scripts.Enemy
@@ -28,6 +29,7 @@ namespace JustGame.Scripts.Enemy
         private float m_curSpeed;
         private bool m_canMove;
         private bool m_forbiddenMoving;
+        private RaycastHit2D m_raycastHit2D;
         
         public Vector2 MovingDirection => m_movingDirection;
         public bool IsMoving => m_canMove;
@@ -55,6 +57,9 @@ namespace JustGame.Scripts.Enemy
             m_canMove = false;
         }
         
+        /// <summary>
+        /// Stop moving and reset last direction
+        /// </summary>
         public void StopMove()
         {
             //While being knockback,
@@ -73,12 +78,16 @@ namespace JustGame.Scripts.Enemy
             if (m_curState == EnemyMovementState.KNOCK_BACK) return;
             m_movingDirection = newDirection;
         }
-        
+
         private void Update()
         {
             if (m_forbiddenMoving) return;
             if (!m_canMove && m_curState != EnemyMovementState.KNOCK_BACK) return;
             ComputeSpeed();
+            if (CheckObstacle())
+            {
+                return;
+            }
             transform.Translate(m_movingDirection * (Time.deltaTime * m_curSpeed/10));
         }
         
@@ -103,6 +112,12 @@ namespace JustGame.Scripts.Enemy
             }
         }
 
+        private bool CheckObstacle()
+        {
+            m_raycastHit2D = Physics2D.Raycast(transform.position, m_movingDirection, 1.5f, LayerManager.ObstacleMask);
+            return m_raycastHit2D;
+        }
+        
         public void ApplyKnockBack(Vector2 direction, float force, float duration)
         {
             if (m_immuneKnockBack) return;

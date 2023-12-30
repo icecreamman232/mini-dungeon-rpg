@@ -20,9 +20,11 @@ namespace JustGame.Scripts.Levels
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.layer != LayerManager.PlayerLayer) return;
-            
-            StartCoroutine(PlayerTravelToNewRoom());
+            if (other.gameObject.layer == LayerManager.PlayerLayer
+                && other.CompareTag("Player"))
+            {
+                StartCoroutine(PlayerTravelToNewRoom());
+            }
         }
 
         private void OnFinishLevel(bool isFinished)
