@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a0970ea76be8eb549b914727075e6303
+guid: 6aa0cdf2ccf4c23429ae868aeac7f47f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bat_0
+      name: violet-bat_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c1a84cd1d651e5478402a0a85cd3037
-      internalID: -2145478046
+      spriteID: de10fd98e15434146beb998df1669297
+      internalID: 1705858662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bat_1
+      name: violet-bat_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,8 +145,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c708bf78bfeefc545a7048e6c319ade3
-      internalID: -683427414
+      spriteID: 566db10955a7912428b58149f2cf7089
+      internalID: 1244425601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: violet-bat_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be59dff155a710443b9330cb2bef22db
+      internalID: 396260223
       vertices: []
       indices: 
       edges: []
@@ -162,8 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bat_0: -2145478046
-      bat_1: -683427414
+      violet-bat_0: 1705858662
+      violet-bat_1: 1244425601
+      violet-bat_2: 396260223
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
