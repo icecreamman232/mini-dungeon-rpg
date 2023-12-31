@@ -2,7 +2,6 @@ using System.Collections;
 using JustGame.Scripts.Combat;
 using JustGame.Scripts.Common;
 using JustGame.Scripts.Managers;
-using JustGame.Scripts.Player;
 using UnityEngine;
 
 namespace JustGame.Scripts.Enemies

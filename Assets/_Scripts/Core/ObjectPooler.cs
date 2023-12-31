@@ -36,7 +36,9 @@ namespace JustGame.Scripts.Managers
                 for (int i = 0; i < pools.Length; i++)
                 {
                     if(pools[i] == this) continue;
-                    if (pools[i].ObjectToPool.name == ObjectToPool.name && pools[i].ObjectToPool!=null)
+                    if (pools[i].ObjectToPool.name == ObjectToPool.name 
+                        && pools[i].ObjectToPool!=null
+                        && pools[i].CurrentPool.Count > 0)
                     {
                         m_pool = pools[i].CurrentPool;
                         return;

@@ -35,6 +35,7 @@ Transform:
   - {fileID: 8885355086960742557}
   - {fileID: 5428389942852550157}
   - {fileID: 4712900624142255326}
+  - {fileID: 474775739034496841}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4085664232183238819
@@ -86,6 +87,70 @@ MonoBehaviour:
   m_dropRange: 1
   m_lootData: {fileID: 11400000, guid: 62b45d30c8c292a46ad65045f831026a, type: 2}
   m_enemyHealth: {fileID: 4085664232183238819}
+--- !u!1 &5981023426853424233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 474775739034496841}
+  - component: {fileID: 7186353346230627257}
+  - component: {fileID: 5394812126318669481}
+  m_Layer: 7
+  m_Name: VioletBatProjectileWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &474775739034496841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981023426853424233}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3419817137278993283}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7186353346230627257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981023426853424233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ed2a6ae9aa8b041bd10f879e05a7ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_objectPooler: {fileID: 5394812126318669481}
+  m_runtimeVariables: {fileID: 11400000, guid: adc8ec07b270ab949abb43d1d20b375b, type: 2}
+--- !u!114 &5394812126318669481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981023426853424233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98719b2355d3cb429d5c30642c78834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 0}
+  Offset: {x: 0, y: 0}
+  IsSharePool: 0
+  ObjectToPool: {fileID: 3687991493015060495, guid: d60f5ed9aa311ef4c9419e67a8a48d8c, type: 3}
+  PoolSize: 5
 --- !u!1 &6093251326930175613
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,10 +160,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9137680599219939449}
-  - component: {fileID: 877378853014131266}
   - component: {fileID: 1802841491897315285}
   - component: {fileID: 5537279322164734514}
   - component: {fileID: 3878388455682483083}
+  - component: {fileID: 2188114959192349342}
   m_Layer: 7
   m_Name: Decisions
   m_TagString: Untagged
@@ -121,21 +186,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4712900624142255326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &877378853014131266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6093251326930175613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa1c598d25f2aa489dd7be485be239d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Label: Stay duration
-  m_minTime: 1
-  m_maxTime: 1.5
 --- !u!114 &1802841491897315285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Label: Moving duration
   m_minTime: 3
-  m_maxTime: 6
+  m_maxTime: 5
 --- !u!114 &3878388455682483083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +231,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   m_enemyMovement: {fileID: 4066584021947041}
+--- !u!114 &2188114959192349342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093251326930175613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa1c598d25f2aa489dd7be485be239d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Delay after shooting duration
+  m_minTime: 1
+  m_maxTime: 2
 --- !u!1 &6571061150150866484
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,17 +293,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   States:
-  - StateName: Stay
+  - StateName: Init
     Actions:
-    - {fileID: 2171131820345729595}
+    - {fileID: 6618873667284240118}
     Transitions:
-    - BrainDecision: {fileID: 877378853014131266}
+    - BrainDecision: {fileID: 1802841491897315285}
+      TrueStateName: Shoot
+      FalseStateName: 
+  - StateName: Shoot
+    Actions:
+    - {fileID: 8677700980484762931}
+    Transitions:
+    - BrainDecision: {fileID: 1802841491897315285}
+      TrueStateName: Delay after shooting
+      FalseStateName: 
+  - StateName: Delay after shooting
+    Actions:
+    - {fileID: 3455683833715492377}
+    Transitions:
+    - BrainDecision: {fileID: 2188114959192349342}
       TrueStateName: Moving
       FalseStateName: 
   - StateName: Moving
     Actions:
-    - {fileID: 7563939605337602550}
-    - {fileID: 2380366992725984810}
+    - {fileID: 4139010946278481934}
     Transitions:
     - BrainDecision: {fileID: 1802841491897315285}
       TrueStateName: Delay during moving
@@ -247,11 +325,8 @@ MonoBehaviour:
     Actions:
     - {fileID: 3455683833715492377}
     Transitions:
-    - BrainDecision: {fileID: 3878388455682483083}
-      TrueStateName: Stay
-      FalseStateName: 
     - BrainDecision: {fileID: 5537279322164734514}
-      TrueStateName: Stay
+      TrueStateName: Shoot
       FalseStateName: 
   Target: {fileID: 0}
   BrainActive: 1
@@ -273,6 +348,9 @@ GameObject:
   - component: {fileID: 2380366992725984810}
   - component: {fileID: 2171131820345729595}
   - component: {fileID: 7563939605337602550}
+  - component: {fileID: 6618873667284240118}
+  - component: {fileID: 8677700980484762931}
+  - component: {fileID: 4139010946278481934}
   m_Layer: 7
   m_Name: Actions
   m_TagString: Untagged
@@ -378,6 +456,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Label: Set direction
   m_movement: {fileID: 4066584021947041}
+--- !u!114 &6618873667284240118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787064545405497625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adcf24ad78482384f9452c73cc05470a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Set player as target
+  m_globalRuntime: {fileID: 11400000, guid: adc8ec07b270ab949abb43d1d20b375b, type: 2}
+--- !u!114 &8677700980484762931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787064545405497625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975509c5f2aaea54794f931a5c30397f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Shoot
+  m_event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7186353346230627257}
+        m_TargetAssemblyTypeName: JustGame.Scripts.Enemies.VioletBatProjectileWeapon,
+          Assembly-CSharp
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4139010946278481934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787064545405497625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1251f33230c1b37468df908e72bfaf1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: Moving to player
+  m_stopMovingOnExitState: 0
 --- !u!1 &7797522894159010076
 GameObject:
   m_ObjectHideFlags: 0

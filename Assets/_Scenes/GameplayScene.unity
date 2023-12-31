@@ -302,7 +302,7 @@ MonoBehaviour:
   m_cameraFollowing: {fileID: 519420034}
   m_isTestMode: 1
   m_testModeRoomLayout: {fileID: 11400000, guid: bd3757a807d5c074b9e6fae1bb3cadf7, type: 2}
-  m_testModeEnemyLayout: {fileID: 11400000, guid: 060b7dfcbc88cf445af7a0492cd1b0f5, type: 2}
+  m_testModeEnemyLayout: {fileID: 11400000, guid: 5029e0a856f4826448aeaaf6ee296af5, type: 2}
   m_castleRoomLayouts:
   - {fileID: 11400000, guid: bd3757a807d5c074b9e6fae1bb3cadf7, type: 2}
   m_castleEnemyLayouts:
