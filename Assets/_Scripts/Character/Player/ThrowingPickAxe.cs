@@ -83,7 +83,10 @@ namespace JustGame.Scripts.Weapons
                 StartMovingBackward();
             }
         }
-        
+
+        private float m_angleRot;
+        [SerializeField] private float m_angleSpeed;
+        [SerializeField] private Transform m_bodySprite;
         private void Update()
         {
             if (!m_isInProgress) return;
@@ -91,12 +94,13 @@ namespace JustGame.Scripts.Weapons
             switch (m_currentState)
             {
                 case ThrowingPickAxeState.READY:
+                    m_angleRot = 0;
                     //We do not update any movement here so we must return
                     return;
                 case ThrowingPickAxeState.MOVING_FORWARD:
                     transform.Translate(m_movingDirection * (m_moveSpeed * Time.deltaTime));
                     m_traveledDistance = Vector2.Distance(m_startPos, transform.position);
-                    m_rotateSprite.UpdateRotation(m_playerAim.AimDirection, OFFSET_PICKAXE_SPRITE_ANGLE);
+                    //m_rotateSprite.UpdateRotation(m_playerAim.AimDirection, OFFSET_PICKAXE_SPRITE_ANGLE);
                     if (m_traveledDistance >= m_movingRange)
                     {
                         StartMovingBackward();
@@ -105,7 +109,7 @@ namespace JustGame.Scripts.Weapons
                 case ThrowingPickAxeState.MOVING_BACKWARD:
                     m_movingDirection = (m_player.position - transform.position).normalized;
                     transform.Translate(m_movingDirection * (m_moveSpeed * Time.deltaTime));
-                    m_rotateSprite.UpdateRotation(m_playerAim.AimDirection * -1, OFFSET_PICKAXE_SPRITE_ANGLE);
+                    //m_rotateSprite.UpdateRotation(m_playerAim.AimDirection * -1, OFFSET_PICKAXE_SPRITE_ANGLE);
                     //We keep moving to wherever player's at
                     var distToPlayer = Vector2.Distance(transform.position, m_player.position);
                     if (distToPlayer <= m_minDistanceToPlayer)
@@ -114,6 +118,15 @@ namespace JustGame.Scripts.Weapons
                     }
                     break;
             }
+
+            m_angleRot += m_angleSpeed * Time.deltaTime;
+            if (m_angleRot >= 360)
+            {
+                m_angleRot = 0;
+            }
+            m_bodySprite.transform.rotation = Quaternion.AngleAxis(
+                m_angleRot * (m_movingDirection.x > 0 ? -1 : 1 )
+                , Vector3.forward);
         }
 
         private void OnDestroy()
