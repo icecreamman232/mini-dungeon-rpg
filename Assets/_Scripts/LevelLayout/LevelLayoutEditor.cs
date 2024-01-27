@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+using System.Collections.Generic;
 using JustGame.Scripts.Data;
 using UnityEditor;
 using UnityEngine;
@@ -10,13 +12,21 @@ namespace JustGame.Scripts.Levels
     public class LevelLayoutEditor : MonoBehaviour
     {
         public string LevelName;
-        public GameObject[] EnemyList;
+        public List<GameObject> EnemyList;
         
         [ContextMenu("Save Layout")]
         private void SaveEnemyLayoutToData()
         {
             var newData = ScriptableObject.CreateInstance<LevelLayoutData>();
-            var amount = EnemyList.Length;
+            EnemyList.Clear();
+            
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                EnemyList.Add(transform.GetChild(i).gameObject);
+            }
+            
+            
+            var amount = EnemyList.Count;
 
             newData.EnemyData = new EnemyData[amount];
             
@@ -30,4 +40,4 @@ namespace JustGame.Scripts.Levels
         }
     }
 }
-
+#endif

@@ -42,11 +42,13 @@ namespace JustGame.Scripts.Levels
         [Space] [Header("Test Mode")] 
         [SerializeField] private bool m_isTestMode;
         [SerializeField] private RoomLayoutData m_testModeRoomLayout;
-        [SerializeField] private EnemyLayoutData m_testModeEnemyLayout;
-        [Space] 
-        [Header("Castle Layout")] 
+
+        [Space] [Header("Castle Layout")] 
         [SerializeField] private RoomLayoutData[] m_castleRoomLayouts;
-        [SerializeField] private EnemyLayoutData[] m_castleEnemyLayouts;
+
+        [Space][Header("Level Design")] 
+        [SerializeField] private LevelLayout m_levelLayout;
+        [SerializeField] private LevelLayoutData[] m_levelLayoutDatas;
         
         private void Start()
         {
@@ -89,10 +91,11 @@ namespace JustGame.Scripts.Levels
             m_cameraFollowing.SetCameraPosition(m_playerTransform.position);
             m_cameraFollowing.SetTarget(m_playerTransform);
             
-            var roomLayout = GetRoomLayout();
-            var enemyLayoutPrefab = GetEnemyLayout(roomLayout.LayoutType);
-            m_roomLayout = Instantiate(roomLayout.RoomPrefab, Vector3.zero, Quaternion.identity, m_roomPivot);
-            m_enemyLayout = Instantiate(enemyLayoutPrefab, Vector3.zero, Quaternion.identity, m_roomPivot);
+            //Random pick level layout
+            var lvl = m_levelLayoutDatas[Random.Range(0, m_levelLayoutDatas.Length)];
+            m_levelLayout.AssignLevelData(lvl);
+            m_levelLayout.LoadLevel();
+            
             InputManager.Instance.IsInputActive = true;
         }
         
@@ -105,11 +108,14 @@ namespace JustGame.Scripts.Levels
             m_playerTransform.position = m_spawnPoint.position;
             m_cameraFollowing.SetCameraPosition(m_playerTransform.position);
             Destroy(m_roomLayout);
-            Destroy(m_enemyLayout);
+            
             var roomLayout = GetRoomLayout();
-            var enemyLayoutPrefab = GetEnemyLayout(roomLayout.LayoutType);
             m_roomLayout = Instantiate(roomLayout.RoomPrefab, Vector3.zero, Quaternion.identity, m_roomPivot);
-            m_enemyLayout = Instantiate(enemyLayoutPrefab, Vector3.zero, Quaternion.identity, m_roomPivot);
+            
+            //Random pick level layout
+            var lvl = m_levelLayoutDatas[Random.Range(0, m_levelLayoutDatas.Length)];
+            m_levelLayout.AssignLevelData(lvl);
+            m_levelLayout.LoadLevel();
             
             m_currentRoom++;
             
@@ -126,24 +132,6 @@ namespace JustGame.Scripts.Levels
             }
             var rand = Random.Range(0, m_castleRoomLayouts.Length);
             return m_castleRoomLayouts[rand];
-        }
-
-        private GameObject GetEnemyLayout(LayoutType type)
-        {
-            if (m_isTestMode)
-            {
-                return m_testModeEnemyLayout.EnemyPrefab;
-            }
-            
-            int index = Random.Range(0, m_castleEnemyLayouts.Length);
-            EnemyLayoutData layout = m_castleEnemyLayouts[index];
-            while (layout.LayoutType != type)
-            {
-                index = Random.Range(0, m_castleEnemyLayouts.Length);
-                layout = m_castleEnemyLayouts[index];
-            }
-
-            return layout.EnemyPrefab;
         }
         
         
