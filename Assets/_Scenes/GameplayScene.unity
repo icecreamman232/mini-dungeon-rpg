@@ -307,10 +307,8 @@ MonoBehaviour:
   m_castleRoomLayouts:
   - {fileID: 11400000, guid: bd3757a807d5c074b9e6fae1bb3cadf7, type: 2}
   m_levelLayout: {fileID: 1725048144}
-  m_levelLayoutDatas:
-  - {fileID: 11400000, guid: bff44530868425444948204f6f8ae94e, type: 2}
-  - {fileID: 11400000, guid: 69bbc44dfa7dd054690a522a1e71ad19, type: 2}
-  - {fileID: 11400000, guid: a13bf8f589f26064b91950f9942fd4da, type: 2}
+  m_firstWorld: {fileID: 11400000, guid: 6e58eeb91a8f7914e955f53a888cfe90, type: 2}
+  m_levelLayoutDatas: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

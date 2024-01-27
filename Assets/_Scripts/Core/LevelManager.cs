@@ -48,12 +48,12 @@ namespace JustGame.Scripts.Levels
 
         [Space][Header("Level Design")] 
         [SerializeField] private LevelLayout m_levelLayout;
-        [SerializeField] private LevelLayoutData[] m_levelLayoutDatas;
+        [SerializeField] private WorldLevelData m_firstWorld;
         
         private void Start()
         {
             m_prevZone = m_currentZone;
-            m_currentRoom = 0;
+            m_currentRoom = 1;
             m_playerTravelToNewRoomEvent.AddListener(OnFinishRoom);
 
             FirstTimeLoad();
@@ -68,7 +68,7 @@ namespace JustGame.Scripts.Levels
             {
                 m_currentZone = Zone.LAST_ZONE_INDEX;
             }
-            m_currentRoom = 0;
+            m_currentRoom = 1;
         }
 
         private void OnFinishRoom(bool isFinished)
@@ -92,9 +92,8 @@ namespace JustGame.Scripts.Levels
             m_cameraFollowing.SetTarget(m_playerTransform);
             
             //Random pick level layout
-            var lvl = m_levelLayoutDatas[Random.Range(0, m_levelLayoutDatas.Length)];
-            m_levelLayout.AssignLevelData(lvl);
-            m_levelLayout.LoadLevel();
+            //Random pick level layout
+            SetEnemyForNextRoom(m_currentRoom);
             
             InputManager.Instance.IsInputActive = true;
         }
@@ -113,9 +112,7 @@ namespace JustGame.Scripts.Levels
             m_roomLayout = Instantiate(roomLayout.RoomPrefab, Vector3.zero, Quaternion.identity, m_roomPivot);
             
             //Random pick level layout
-            var lvl = m_levelLayoutDatas[Random.Range(0, m_levelLayoutDatas.Length)];
-            m_levelLayout.AssignLevelData(lvl);
-            m_levelLayout.LoadLevel();
+            SetEnemyForNextRoom(m_currentRoom);
             
             m_currentRoom++;
             
@@ -132,6 +129,20 @@ namespace JustGame.Scripts.Levels
             }
             var rand = Random.Range(0, m_castleRoomLayouts.Length);
             return m_castleRoomLayouts[rand];
+        }
+
+        private void SetEnemyForNextRoom(int roomIndex)
+        {
+            //TODO: Choose world data here
+            
+            //Get enemy layout
+            var enemyLayoutData = m_firstWorld.GetRoomData(roomIndex);
+            var enemyLayoutIndex = Random.Range(0, enemyLayoutData.Length);
+            var enemyLayout = enemyLayoutData[enemyLayoutIndex];
+            
+            //Set enemy layout
+            m_levelLayout.AssignLevelData(enemyLayout);
+            m_levelLayout.LoadLevel();
         }
         
         

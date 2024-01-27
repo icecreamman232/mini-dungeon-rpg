@@ -15,15 +15,32 @@ namespace JustGame.Scripts.Data
         [SerializeField] private LevelLayoutData[] m_room8;
         [SerializeField] private LevelLayoutData[] m_room9;
 
-        public LevelLayoutData[] GetRoom1Data => m_room1;
-        public LevelLayoutData[] GetRoom2Data => m_room2;
-        public LevelLayoutData[] GetRoom3Data => m_room3;
-        public LevelLayoutData[] GetRoom4Data => m_room4;
-        public LevelLayoutData[] GetRoom5Data => m_room5;
-        public LevelLayoutData[] GetRoom6Data => m_room6;
-        public LevelLayoutData[] GetRoom7Data => m_room7;
-        public LevelLayoutData[] GetRoom8Data => m_room8;
-        public LevelLayoutData[] GetRoom9Data => m_room9;
+        public LevelLayoutData[] GetRoomData(int roomIndex)
+        {
+            switch (roomIndex)
+            {
+                case 1:
+                    return m_room1;
+                case 2:
+                    return m_room2;
+                case 3:
+                    return m_room3;
+                case 4:
+                    return m_room4;
+                case 5:
+                    return m_room5;
+                case 6:
+                    return m_room6;
+                case 7:
+                    return m_room7;
+                case 8:
+                    return m_room8;
+                case 9:
+                    return m_room9;
+            }
+
+            return null;
+        }
     }
 }
 
