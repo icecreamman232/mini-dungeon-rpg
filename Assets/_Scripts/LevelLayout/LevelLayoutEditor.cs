@@ -20,6 +20,7 @@ namespace JustGame.Scripts.Levels
             var newData = ScriptableObject.CreateInstance<LevelLayoutData>();
             EnemyList.Clear();
             
+            //Gather enemy prefabs under this game object
             for (int i = 0; i < transform.childCount; i++)
             {
                 EnemyList.Add(transform.GetChild(i).gameObject);
@@ -33,6 +34,7 @@ namespace JustGame.Scripts.Levels
             for (int i = 0; i < amount; i++)
             {
                 newData.EnemyData[i] = new EnemyData();
+                //Assign original prefab in Asset
                 newData.EnemyData[i].Enemy = PrefabUtility.GetCorrespondingObjectFromOriginalSource(EnemyList[i]);
                 newData.EnemyData[i].SpawnPosition = EnemyList[i].transform.position;
             }
