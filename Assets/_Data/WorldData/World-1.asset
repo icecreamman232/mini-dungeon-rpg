@@ -9,8 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c8eb8aef22f401409a4028df2f774d7, type: 3}
-  m_Name: CastleEnemyLayout-4
+  m_Script: {fileID: 11500000, guid: 65be67fd522868f4ab97980cbfce9e2e, type: 3}
+  m_Name: World-1
   m_EditorClassIdentifier: 
-  LayoutType: 0
-  EnemyPrefab: {fileID: 6904106359486015329, guid: ab2f54e1223164746b87caaf3d242f3c, type: 3}
+  m_room1: []
+  m_room2: []
+  m_room3: []
+  m_room4: []
+  m_room5: []
+  m_room6: []
+  m_room7: []
+  m_room8: []
+  m_room9: []
