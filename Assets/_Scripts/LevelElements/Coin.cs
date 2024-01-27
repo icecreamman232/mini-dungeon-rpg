@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using JustGame.Scripts.Common;
 using JustGame.Scripts.Events;
@@ -11,9 +12,28 @@ namespace JustGame.Scripts.LevelElements
         [SerializeField] private SpriteRenderer m_spriteRenderer;
         [SerializeField] private AnimationParameter m_pickUpVFXAnim;
         [SerializeField] private IntEvent m_pickingCoinEvent;
+        [SerializeField] private ScriptableEvent<bool> m_playerTravelToNewRoom;
         [SerializeField] private int m_coinValue;
 
         private bool m_isInProgress;
+
+        private void Start()
+        {
+            m_playerTravelToNewRoom.AddListener(OnFinishLevel);
+        }
+
+        private void OnDestroy()
+        {
+            m_playerTravelToNewRoom.RemoveListener(OnFinishLevel);
+        }
+
+        private void OnFinishLevel(bool isFinish)
+        {
+            if (!isFinish) return;
+            
+            //About to destroy the item
+            base.OnPicking();
+        }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -40,6 +60,8 @@ namespace JustGame.Scripts.LevelElements
             base.OnPicking();
             m_isInProgress = false;
         }
+        
+        
     }
 }
 

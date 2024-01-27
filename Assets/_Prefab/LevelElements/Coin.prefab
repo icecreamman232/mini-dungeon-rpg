@@ -269,4 +269,5 @@ MonoBehaviour:
   m_spriteRenderer: {fileID: 3895175865682851413}
   m_pickUpVFXAnim: {fileID: 7306031283824103026}
   m_pickingCoinEvent: {fileID: 11400000, guid: d9599b3872724cb46bc58930368bd8a7, type: 2}
+  m_playerTravelToNewRoom: {fileID: 11400000, guid: 85173d19d5262ae459043bf1fd916477, type: 2}
   m_coinValue: 1

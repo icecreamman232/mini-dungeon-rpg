@@ -147,6 +147,7 @@ MonoBehaviour:
   m_spriteRenderer: {fileID: 7495898818068927270}
   m_pickUpVFXAnim: {fileID: 6580973701472375826}
   m_pickingDiamondEvent: {fileID: 11400000, guid: e21ca6555e15cfd41809b0a40a96ef59, type: 2}
+  m_playerTravelToNewRoom: {fileID: 11400000, guid: 85173d19d5262ae459043bf1fd916477, type: 2}
   m_diamondValue: 1
 --- !u!1 &2434111266887376443
 GameObject:

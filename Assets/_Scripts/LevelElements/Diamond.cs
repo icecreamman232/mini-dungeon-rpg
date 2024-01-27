@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using JustGame.Scripts.Common;
 using JustGame.Scripts.Events;
@@ -11,10 +12,29 @@ namespace JustGame.Scripts.LevelElements
         [SerializeField] private SpriteRenderer m_spriteRenderer;
         [SerializeField] private AnimationParameter m_pickUpVFXAnim;
         [SerializeField] private IntEvent m_pickingDiamondEvent;
+        [SerializeField] private ScriptableEvent<bool> m_playerTravelToNewRoom;
         [SerializeField] private int m_diamondValue;
         
         private bool m_isInProgress;
-        
+
+        private void Start()
+        {
+            m_playerTravelToNewRoom.AddListener(OnFinishRoom);
+        }
+
+        private void OnDestroy()
+        {
+            m_playerTravelToNewRoom.RemoveListener(OnFinishRoom);
+        }
+
+        private void OnFinishRoom(bool isFinish)
+        {
+            if (!isFinish) return;
+            
+            //About to destroy the item
+            base.OnPicking();
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.layer == LayerManager.PlayerLayer
