@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using JustGame.Scripts.Combat;
 using JustGame.Scripts.Managers;
@@ -12,10 +11,19 @@ namespace JustGame.Scripts.Enemy
         MOVING,
         KNOCK_BACK,
     }
+
+    public enum FacingDirection
+    {
+        LEFT,
+        RIGHT,
+    }
+    
     public class EnemyMovement : MonoBehaviour, SlowEffector
     {
         [Header("Base")] 
         [SerializeField] private EnemyMovementState m_curState;
+        [SerializeField] private FacingDirection m_facingDirection;
+        [SerializeField] private SpriteRenderer m_spriteRenderer;
         [SerializeField] private float m_moveSpeed;
         [SerializeField] private Vector2 m_movingDirection;
 
@@ -39,6 +47,7 @@ namespace JustGame.Scripts.Enemy
         {
             m_curSpeed = m_moveSpeed;
             m_curState = EnemyMovementState.STOP;
+            m_facingDirection = FacingDirection.LEFT;
         }
 
         public void StartMove()
@@ -79,11 +88,21 @@ namespace JustGame.Scripts.Enemy
             m_movingDirection = newDirection;
         }
 
+        private void FlipSprite()
+        {
+            m_facingDirection = m_movingDirection.x < 0 ? FacingDirection.LEFT : FacingDirection.RIGHT;
+            if (m_spriteRenderer != null)
+            {
+                m_spriteRenderer.flipX = m_facingDirection == FacingDirection.RIGHT;
+            }
+        }
+        
         private void Update()
         {
             if (m_forbiddenMoving) return;
             if (!m_canMove && m_curState != EnemyMovementState.KNOCK_BACK) return;
             ComputeSpeed();
+            FlipSprite();
             if (CheckObstacle())
             {
                 return;
