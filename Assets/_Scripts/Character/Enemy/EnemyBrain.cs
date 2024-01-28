@@ -1,19 +1,24 @@
+using System;
 using System.Collections.Generic;
+using JustGame.Scripts.Enemies;
 using UnityEngine;
 
 namespace JustGame.Scripts.Enemy
 {
     public class EnemyBrain : MonoBehaviour
     {
-        //public EnemyController Owner;
         public List<BrainState> States;
         public Transform Target;
         public bool BrainActive;
         public BrainState CurrentState;
-
         public float TimeInState;
+        
+        private EnemyHealth m_enemyHealth;
+        
         private void Start()
         {
+            m_enemyHealth = GetComponentInParent<EnemyHealth>();
+            m_enemyHealth.OnDeath += OnDeath;
             foreach (var state in States)
             {
                 state.Initialize(this);
@@ -21,6 +26,15 @@ namespace JustGame.Scripts.Enemy
 
             CurrentState = States[0];
             CurrentState.EnterState();
+        }
+
+        private void OnDeath()
+        {
+            if (BrainActive)
+            {
+                BrainActive = false;
+                ResetBrain();
+            }
         }
 
         public void ResetBrain()
@@ -96,6 +110,11 @@ namespace JustGame.Scripts.Enemy
         {
             var decisions = GetComponentsInChildren<BrainDecision>();
             return decisions;
+        }
+
+        private void OnDestroy()
+        {
+            m_enemyHealth.OnDeath -= OnDeath;
         }
     }
 }

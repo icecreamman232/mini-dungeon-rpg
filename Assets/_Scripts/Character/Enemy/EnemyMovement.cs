@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using JustGame.Scripts.Combat;
+using JustGame.Scripts.Enemies;
 using JustGame.Scripts.Managers;
 using UnityEngine;
 
@@ -38,17 +40,28 @@ namespace JustGame.Scripts.Enemy
         private bool m_canMove;
         private bool m_forbiddenMoving;
         private RaycastHit2D m_raycastHit2D;
+        private EnemyHealth m_enemyHealth;
         
         public Vector2 MovingDirection => m_movingDirection;
         public bool IsMoving => m_canMove;
-
+        
 
         private void Start()
         {
             m_curSpeed = m_moveSpeed;
             m_curState = EnemyMovementState.STOP;
             m_facingDirection = FacingDirection.LEFT;
+            m_enemyHealth = GetComponent<EnemyHealth>();
+            m_enemyHealth.OnDeath += OnDeath;
         }
+
+        private void OnDeath()
+        {
+            m_curState = EnemyMovementState.STOP;
+            m_canMove = false;
+            m_forbiddenMoving = true;
+        }
+
 
         public void StartMove()
         {
@@ -195,6 +208,11 @@ namespace JustGame.Scripts.Enemy
         {
             if (!m_canBeSlow) return;
             SetOverridePercentSpeed(slowPercent, duration);
+        }
+
+        private void OnDestroy()
+        {
+            m_enemyHealth.OnDeath -= OnDeath;
         }
     }
 }

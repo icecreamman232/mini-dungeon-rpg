@@ -39,7 +39,7 @@ namespace JustGame.Scripts.Enemies
             StartCoroutine(OnInvulnerable());
         }
         
-        private void Kill()
+        protected virtual void Kill()
         {
             //TODO:Kill process here
             OnDeath?.Invoke();
