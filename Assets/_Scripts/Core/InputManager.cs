@@ -13,6 +13,10 @@ namespace JustGame.Scripts.Managers
         MOVE_DOWN,
         DASH,
         
+        SHOOT_LEFT,
+        SHOOT_RIGHT,
+        SHOOT_UP,
+        SHOOT_DOWN,
         USE_ACTIVE_ABILITY = 10,
     }
     [Serializable]

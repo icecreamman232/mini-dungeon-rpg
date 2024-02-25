@@ -295,7 +295,7 @@ MonoBehaviour:
   m_finishRoomEvent: {fileID: 11400000, guid: c44021bd1e7ba1b4fb897dfc8dc8c32f, type: 2}
   m_finishZoneEvent: {fileID: 11400000, guid: 5e9f7d9d01dc46f4bb893383c25b61a9, type: 2}
   m_playerTravelToNewRoomEvent: {fileID: 11400000, guid: 85173d19d5262ae459043bf1fd916477, type: 2}
-  m_playerPrefab: {fileID: 3190903573364468957, guid: c53c29d1bd0821f43a75a662c359243c, type: 3}
+  m_playerPrefab: {fileID: 3190903573364468957, guid: ba8f25fc59e2b98408488eecc817f53e, type: 3}
   m_playerTransform: {fileID: 0}
   m_spawnPoint: {fileID: 2061403445}
   m_roomPivot: {fileID: 244461863}
@@ -864,6 +864,14 @@ MonoBehaviour:
     keyCode: 119
   - keyAction: 4
     keyCode: 32
+  - keyAction: 5
+    keyCode: 276
+  - keyAction: 6
+    keyCode: 275
+  - keyAction: 7
+    keyCode: 273
+  - keyAction: 8
+    keyCode: 274
 --- !u!4 &1288014986
 Transform:
   m_ObjectHideFlags: 0
