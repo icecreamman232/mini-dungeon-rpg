@@ -11,8 +11,23 @@ namespace JustGame.Scripts.Levels
     /// </summary>
     public class LevelLayoutEditor : MonoBehaviour
     {
+        [Header("Load Level")] 
+        public LevelLayoutData LevelData;
+        [Header("Save Level")]
         public string LevelName;
         public List<GameObject> EnemyList;
+
+        [ContextMenu("Load Layout")]
+        private void LoadEnemyLayoutData()
+        {
+            EnemyList.Clear();
+            for (int i = 0; i < LevelData.EnemyData.Length; i++)
+            {
+                var enemy = Instantiate(LevelData.EnemyData[i].Enemy, LevelData.EnemyData[i].SpawnPosition,
+                    Quaternion.identity, this.transform);
+                EnemyList.Add(enemy);
+            }
+        }
         
         [ContextMenu("Save Layout")]
         private void SaveEnemyLayoutToData()
